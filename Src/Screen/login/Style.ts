@@ -26,7 +26,7 @@ const style = StyleSheet.create({
   title: {
     fontSize: 24,
     fontWeight: '700',
-    color: '#141414',
+    color: '#171717',
     textAlign: 'center',
     marginTop: 8,
     marginBottom: 8,
@@ -37,7 +37,7 @@ const style = StyleSheet.create({
     color: '#171717',
     textAlign: 'center',
     marginBottom: 16,
-      fontFamily: 'Manpore',
+    fontFamily: 'Manpore',
   },
 
   // ── Inputs ────────────────────────────────────────────────────────────────
