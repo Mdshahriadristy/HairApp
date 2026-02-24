@@ -12,12 +12,12 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './Style';
-import AppleIcon from '../../../Components/Svg/Applelogo';
-import GoogleIcon from '../../../Components/Svg/GoogleIcon';
-import MailIcon from '../../../Components/Svg/MailIcon';
-import LockIcon from '../../../Components/Svg/LockIcon';
-import EyeOffIcon from '../../../Components/Svg/EyeOffIcon';
-import EyeOnIcon from '../../../Components/Svg/EyeOnIcon';
+import AppleIcon from '../../components/svg/Applelogo';
+import GoogleIcon from '../../components/svg/GoogleIcon';
+import MailIcon from '../../components/svg/MailIcon';
+import LockIcon from '../../components/svg/LockIcon';
+import EyeOffIcon from '../../components/svg/EyeOffIcon';
+import EyeOnIcon from '../../components/svg/EyeOnIcon';
 
 const LoginScreen = ({ navigation }: any) => {
   const [email, setEmail] = useState('');
