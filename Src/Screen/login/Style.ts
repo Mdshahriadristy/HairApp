@@ -37,6 +37,7 @@ const style = StyleSheet.create({
     color: '#171717',
     textAlign: 'center',
     marginBottom: 16,
+      fontFamily: 'Manpore',
   },
 
   // ── Inputs ────────────────────────────────────────────────────────────────
@@ -48,6 +49,7 @@ const style = StyleSheet.create({
     fontWeight: '600',
     color: '#171717',
     marginBottom: 8,
+    fontFamily: 'Manpore',
   },
   inputWrapper: {
     flexDirection: 'row',
@@ -160,6 +162,7 @@ const style = StyleSheet.create({
   signUpText: {
     fontSize: 12,
     color: '#595959',
+    fontFamily: 'Manpore',
   },
   signUpLink: {
     fontSize: 12,
