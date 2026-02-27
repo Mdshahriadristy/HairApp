@@ -10,7 +10,7 @@ const style = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     padding: 16,
-    paddingTop: 98,
+    marginTop:46 ,
 
   },
 
@@ -167,6 +167,32 @@ const style = StyleSheet.create({
   signUpLink: {
     fontSize: 12,
     color: '#635BFF',
+  },
+
+    //  Feedback Row (Strength OR Error — same spot)
+  feedbackRow: {
+    height: 24,
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  strengthRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  strengthLabel: {
+    fontSize: 13,
+    color: '#595959',
+    fontFamily: 'Manrope',
+  },
+  strengthValue: {
+    fontSize: 13,
+    fontWeight: '700',
+    fontFamily: 'Manrope',
+  },
+  errorText: {
+    fontSize: 14,
+    color: '#FF317D',
+    fontFamily: 'Manrope',
   },
 });
 

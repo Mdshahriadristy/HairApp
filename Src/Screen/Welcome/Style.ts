@@ -117,7 +117,7 @@ const style = StyleSheet.create({
     marginBottom: 58,
   },
   nextButtonText: {
-    fontSize: 17,
+    fontSize: 14,
     fontWeight: '700',
     color: '#FFFFFF',
 

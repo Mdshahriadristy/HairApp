@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+ import { StyleSheet } from 'react-native';
 
 const style = StyleSheet.create({
   safeArea: {
@@ -9,19 +9,18 @@ const style = StyleSheet.create({
   },
   scrollContent: {
     flexGrow: 1,
-    paddingHorizontal: 24,
+    padding: 16,
     paddingTop: 98,
-    paddingBottom: 32,
   },
 
-  // ── Logo -
+  // ── Logo ──
   logo: {
     alignItems: 'center',
     justifyContent: 'center',
     left: 161.5,
   },
 
-  // ── Header -
+  // ── Header ──
   title: {
     fontSize: 24,
     fontWeight: '700',
@@ -29,26 +28,27 @@ const style = StyleSheet.create({
     textAlign: 'center',
     marginTop: 8,
     marginBottom: 8,
-    fontFamily: 'Manpore',
+    fontFamily: 'Manrope',
   },
   subtitle: {
     fontSize: 14,
     color: '#171717',
     textAlign: 'center',
     marginBottom: 16,
-    fontFamily: 'Manpore',
+    fontFamily: 'Manrope',
+    lineHeight: 22,
   },
 
-  // ── Inputs -
+  //  Inputs 
   inputGroup: {
-    marginBottom: 24,
+    marginBottom: 12,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
     color: '#171717',
     marginBottom: 8,
-    fontFamily: 'Manpore',
+    fontFamily: 'Manrope',
   },
   inputWrapper: {
     flexDirection: 'row',
@@ -61,14 +61,46 @@ const style = StyleSheet.create({
     height: 50,
     gap: 8,
   },
+  inputWrapperError: {
+    borderColor: '#FF317D',
+  },
   input: {
     flex: 1,
     fontSize: 14,
     color: '#1A1A2E',
     padding: 0,
   },
+  eyeButton: {
+    paddingLeft: 8,
+  },
 
-  // ── Login Button -
+  //  Feedback Row (Strength OR Error — same spot)
+  feedbackRow: {
+    height: 24,
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  strengthRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  strengthLabel: {
+    fontSize: 13,
+    color: '#595959',
+    fontFamily: 'Manrope',
+  },
+  strengthValue: {
+    fontSize: 13,
+    fontWeight: '700',
+    fontFamily: 'Manrope',
+  },
+  errorText: {
+    fontSize: 14,
+    color: '#FF317D',
+    fontFamily: 'Manrope',
+  },
+
+  // ── Reset Button ──
   loginButton: {
     backgroundColor: '#635BFF',
     borderRadius: 8,
@@ -80,6 +112,10 @@ const style = StyleSheet.create({
     shadowOpacity: 0.35,
     shadowRadius: 12,
     elevation: 6,
+    marginTop: 8,
+  },
+  loginButtonDisabled: {
+    opacity: 0.5,
   },
   loginButtonText: {
     color: '#FFFFFF',

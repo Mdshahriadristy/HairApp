@@ -11,14 +11,20 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigator/RootNavigator';
 import styles from './Style';
-import MailIcon from '../../../Components/Svg/MailIcon';
+import MailIcon from '../../components/svg/MailIcon';
 
-const LoginScreen = () => {
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'SignUp'>;
+
+const SignUpScreen = () => {
   const [email, setEmail] = useState('');
+  const navigation = useNavigation<NavigationProp>();
 
   const handleLogin = () => {
-    console.log('Login pressed', { email });
+    navigation.navigate('SetnewPassword');
   };
 
   return (
@@ -41,7 +47,9 @@ const LoginScreen = () => {
 
           {/* Header */}
           <Text style={styles.title}>Forgot Password </Text>
-          <Text style={styles.subtitle}>Please enter your Email Address to reset the password</Text>
+          <Text style={styles.subtitle}>
+            Please enter your Email Address to reset the password
+          </Text>
 
           {/* Email Input */}
           <View style={styles.inputGroup}>
@@ -61,7 +69,7 @@ const LoginScreen = () => {
             </View>
           </View>
 
-          {/* Login Button */}
+          {/* Reset Button */}
           <TouchableOpacity
             style={styles.loginButton}
             onPress={handleLogin}
@@ -69,11 +77,10 @@ const LoginScreen = () => {
           >
             <Text style={styles.loginButtonText}>Reset</Text>
           </TouchableOpacity>
-
         </ScrollView>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
 
-export default LoginScreen;
+export default SignUpScreen;

@@ -1,16 +1,21 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import SignUpScreen from './Src/Screen/SignUp/SignUpScreen';
+import CreateAccount from './Src/Screen/CreateAccount/CreateAccount';
+
 // import RootNavigator from './Src/navigator/RootNavigator';
 
-// import SplashScreen from './Src/Screen/Splash/SplashScreen';
 
 const App = () => {
   return (
     <SafeAreaProvider>
       {/* <RootNavigator /> */}
-      <SignUpScreen />
+
+
+      <CreateAccount/>
+
+
     </SafeAreaProvider>
+    
   );
 };
 

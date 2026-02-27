@@ -18,11 +18,15 @@ import MailIcon from '../../components/svg/MailIcon';
 import LockIcon from '../../components/svg/LockIcon';
 import EyeOffIcon from '../../components/svg/EyeOffIcon';
 import EyeOnIcon from '../../components/svg/EyeOnIcon';
+import Nameicon from '../../components/svg/Nameicon';
 
-const LoginScreen = ({ navigation }: any) => {
+const CreateAccount = () => {
   const [email, setEmail] = useState('');
+  const [Name, setName] = useState('');
+  const [Repassword, ResetPassword] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [showRePassword, setShowRePassword] = useState(false);
 
   const handleLogin = () => {
     console.log('Login pressed', { email, password });
@@ -34,10 +38,6 @@ const LoginScreen = ({ navigation }: any) => {
 
   const handleAppleLogin = () => {
     console.log('Apple login pressed');
-  };
-
-  const handleSignUp = () => {
-    navigation?.navigate('SignUp');
   };
 
   return (
@@ -59,8 +59,28 @@ const LoginScreen = ({ navigation }: any) => {
           />
 
           {/* Header */}
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text style={styles.subtitle}>Sign in to access your dashboard</Text>
+          <Text style={styles.title}>Create Account</Text>
+          <Text style={styles.subtitle}>
+            Join us to elevate your salon business
+          </Text>
+
+          {/* Name Input */}
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Full Name</Text>
+            <View style={styles.inputWrapper}>
+              <Nameicon size={20} color="#525252" />
+              <TextInput
+                style={styles.input}
+                placeholder="Enter your full name"
+                placeholderTextColor="#ABABAB"
+                value={Name}
+                onChangeText={setName}
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+              />
+            </View>
+          </View>
 
           {/* Email Input */}
           <View style={styles.inputGroup}>
@@ -107,13 +127,32 @@ const LoginScreen = ({ navigation }: any) => {
             </View>
           </View>
 
-          {/* Forgot Password */}
-          <TouchableOpacity
-            onPress={handleSignUp}
-            style={styles.forgotContainer}
-          >
-            <Text style={styles.forgotText}>Forgot Password?</Text>
-          </TouchableOpacity>
+          {/* Password Input */}
+          <View style={styles.inputGroup}>
+            <Text style={styles.label}>Re-enter Password</Text>
+            <View style={styles.inputWrapper}>
+              <LockIcon width={20} height={20} />
+              <TextInput
+                style={styles.input}
+                placeholder="Confirm Password"
+                placeholderTextColor="#ABABAB"
+                value={Repassword}
+                onChangeText={ResetPassword}
+                secureTextEntry={!showRePassword}
+                autoCapitalize="none"
+              />
+              <TouchableOpacity
+                onPress={() => setShowRePassword(!showRePassword)}
+                style={styles.eyeButton}
+              >
+                {showRePassword ? (
+                  <EyeOnIcon width={20} height={20} />
+                ) : (
+                  <EyeOffIcon width={20} height={20} />
+                )}
+              </TouchableOpacity>
+            </View>
+          </View>
 
           {/* Login Button */}
           <TouchableOpacity
@@ -165,4 +204,4 @@ const LoginScreen = ({ navigation }: any) => {
   );
 };
 
-export default LoginScreen;
+export default CreateAccount;
