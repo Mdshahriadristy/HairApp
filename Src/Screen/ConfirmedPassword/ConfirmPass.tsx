@@ -11,10 +11,15 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../navigator/RootNavigator';
 import styles from './Style';
 import LockIcon from '../../components/svg/LockIcon';
 import EyeOffIcon from '../../components/svg/EyeOffIcon';
 import EyeOnIcon from '../../components/svg/EyeOnIcon';
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const getPasswordStrength = (
   pass: string,
@@ -25,12 +30,16 @@ const getPasswordStrength = (
   const hasLower = /[a-z]/.test(pass);
   const hasNumber = /[0-9]/.test(pass);
   const hasSpecial = /[^A-Za-z0-9]/.test(pass);
-  const score = [hasUpper, hasLower, hasNumber, hasSpecial].filter(Boolean).length;
+  const score = [hasUpper, hasLower, hasNumber, hasSpecial].filter(
+    Boolean,
+  ).length;
   if (score >= 3) return { label: 'Strong', color: '#2FA36B' };
   return { label: 'Weak', color: '#E8A838' };
 };
 
 const ConfirmPass = () => {
+  const navigation = useNavigation<NavigationProp>();
+
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -43,6 +52,7 @@ const ConfirmPass = () => {
   const handleReset = () => {
     if (isNotMatch || password.length === 0) return;
     console.log('Reset pressed', { password });
+    navigation.navigate('CreateAccount');
   };
 
   return (
@@ -57,7 +67,7 @@ const ConfirmPass = () => {
           keyboardShouldPersistTaps="handled"
           showsVerticalScrollIndicator={false}
         >
-          {/* Logo1 */}
+          {/* Logo */}
           <Image
             style={styles.logo}
             source={require('../../../assets/images/logo1.png')}
@@ -66,7 +76,8 @@ const ConfirmPass = () => {
           {/* Header */}
           <Text style={styles.title}>Set a new password</Text>
           <Text style={styles.subtitle}>
-            Create a new password. Ensure it differs from previous ones for security
+            Create a new password. Ensure it differs from previous{`\n`} ones
+            for security
           </Text>
 
           {/* Password Input */}
@@ -128,7 +139,7 @@ const ConfirmPass = () => {
             </View>
           </View>
 
-
+          {/* Feedback Row */}
           <View style={styles.feedbackRow}>
             {isNotMatch ? (
               <Text style={styles.errorText}>Passwords did not match</Text>
@@ -146,7 +157,8 @@ const ConfirmPass = () => {
           <TouchableOpacity
             style={[
               styles.loginButton,
-              (isNotMatch || password.length === 0) && styles.loginButtonDisabled,
+              (isNotMatch || password.length === 0) &&
+                styles.loginButtonDisabled,
             ]}
             onPress={handleReset}
             activeOpacity={0.85}

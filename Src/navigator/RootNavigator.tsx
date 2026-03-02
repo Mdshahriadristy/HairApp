@@ -9,6 +9,10 @@ import LoginScreen from '../Screen/login/login';
 import SignUpScreen from '../Screen/SignUp/SignUpScreen';
 import Setnewpass from '../Screen/SetnewPassword/Setnewpass';
 import ConfirmPass from '../Screen/ConfirmedPassword/ConfirmPass';
+import CreateAccount from '../Screen/CreateAccount/CreateAccount';
+import Verification2 from '../Screen/Verifiacation2/Verification2';
+import VerificationComplete from '../Screen/VerificationComplete/VerificationComplete';
+import ProfileSetUp1Screen from '../Screen/ProfileSetUp/ProfileSetUp1';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -19,6 +23,10 @@ export type RootStackParamList = {
   ForgotPassword: undefined;
   SetnewPassword: undefined;
   ConfirmedPassword: undefined;
+  CreateAccount: undefined;
+  Verification2: undefined;
+  VerificationComplete: undefined;
+  ProfileSetUp:undefined;
 
   Home: undefined;
 };
@@ -39,6 +47,12 @@ const RootNavigator: React.FC = () => {
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="SetnewPassword" component={Setnewpass} />
         <Stack.Screen name="ConfirmedPassword" component={ConfirmPass} />
+        <Stack.Screen name="CreateAccount" component={CreateAccount} />
+        <Stack.Screen name="Verification2" component={Verification2} />
+        <Stack.Screen name="VerificationComplete" component={VerificationComplete} />
+        <Stack.Screen name="ProfileSetUp" component={ProfileSetUp1Screen} />
+
+
       </Stack.Navigator>
     </NavigationContainer>
   );

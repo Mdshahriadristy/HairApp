@@ -62,7 +62,7 @@ const style = StyleSheet.create({
     gap: 8,
   },
   inputWrapperError: {
-    borderColor: '#FF317D',
+    borderColor: '#D4D4D4',
   },
   input: {
     flex: 1,

@@ -1,55 +1,58 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, } from 'react-native';
 
 const style = StyleSheet.create({
   safeArea: {
     flex: 1,
+
   },
   keyboardAvoid: {
     flex: 1,
   },
   scrollContent: {
     flexGrow: 1,
-    padding: 16,
-    marginTop:46 ,
+    paddingHorizontal: 16,
+    paddingTop: 46,
+    paddingBottom: 110.5,
 
   },
 
-  // ── Logo ──────────────────────────────────────────────────────────────────
-
+  // ── Logo -
   logo: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    left: 161.5,
+    width: 56,
+    height: 56,
+    alignSelf: 'center',
+    marginBottom: 16,
+    resizeMode: 'contain',
   },
 
-  // ── Header ────────────────────────────────────────────────────────────────
+  // ── Header ────
   title: {
     fontSize: 24,
     fontWeight: '700',
     color: '#171717',
     textAlign: 'center',
-    marginTop: 8,
-    marginBottom: 8,
-    fontFamily: 'Manpore',
+    marginBottom: 6,
+    fontFamily: 'Manrope',
   },
   subtitle: {
     fontSize: 14,
+    fontWeight: '400',
     color: '#171717',
     textAlign: 'center',
-    marginBottom: 16,
-    fontFamily: 'Manpore',
+    marginBottom: 24,
+    fontFamily: 'Manrope',
   },
 
-  // ── Inputs ────────────────────────────────────────────────────────────────
+  // ── Inputs ───
   inputGroup: {
-    marginBottom: 16,
+    marginBottom: 14,
   },
   label: {
     fontSize: 14,
     fontWeight: '600',
     color: '#171717',
-    marginBottom: 8,
-    fontFamily: 'Manpore',
+    marginBottom: 6,
+    fontFamily: 'Manrope',
   },
   inputWrapper: {
     flexDirection: 'row',
@@ -58,22 +61,22 @@ const style = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#E5E5EC',
     borderRadius: 10,
-    paddingHorizontal: 14,
-    height: 50,
-    gap: 8,
+    paddingHorizontal: 12,
+    height: 45,
+    gap: 6,
   },
-
   input: {
     flex: 1,
     fontSize: 14,
     color: '#1A1A2E',
     padding: 0,
+    fontFamily: 'Manrope',
   },
   eyeButton: {
-    paddingLeft: 8,
+    padding: 4,
   },
 
-  // ── Forgot Password -
+  // ── Forgot Password ────────────────────────────────────────────────────────
   forgotContainer: {
     alignItems: 'flex-end',
     marginBottom: 28,
@@ -83,51 +86,139 @@ const style = StyleSheet.create({
     fontSize: 12,
     color: '#095654',
     fontWeight: '700',
+    fontFamily: 'Manrope',
   },
 
-  // ── Login Button -
-  loginButton: {
-    backgroundColor: '#635BFF',
-    borderRadius: 8,
-    height: 46,
+  // ── Feedback Row (Strength OR Error) ──────────────────────────────────────
+  feedbackRow: {
+    height: 22,
+    justifyContent: 'center',
+    marginBottom: 14,
+  },
+  strengthRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  strengthLabel: {
+    fontSize: 14,
+    color: '#595959',
+    fontFamily: 'Manrope',
+  },
+  strengthValue: {
+    fontSize: 13,
+    fontWeight: '700',
+    fontFamily: 'Manrope',
+  },
+  errorText: {
+    fontSize: 14,
+    color: '#FF317D',
+    fontFamily: 'Manrope',
+    fontWeight: '500',
+
+  },
+
+  // ── Role / ProfileCard ─────────────────────────────────────────────────────
+  inputWrapper1: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#E4E6EB',
+    borderWidth: 1,
+    borderColor: '#E5E5EC',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    height: 50,
+    gap: 6,
+  },
+
+  // ── Terms & Conditions Checkbox ────────────────────────────────────────────
+  termsContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 4,
+    marginBottom: 20,
+    gap: 6,
+  },
+  checkbox: {
+    width: 20,
+    height: 20,
+    borderRadius: 4,
+    borderWidth: 1.5,
+    borderColor: '#635BFF',
     alignItems: 'center',
     justifyContent: 'center',
-    shadowColor: '#5B5EFF',
+    backgroundColor: '#FFFFFF',
+    flexShrink: 0,
+  },
+  checkboxChecked: {
+    backgroundColor: '#635BFF',
+    borderColor: '#635BFF',
+    
+  },
+  checkmark: {
+    color: '#FFFFFF',
+    height:5.5,
+    width:8,
+
+  },
+  termsText: {
+    flex: 1,
+    fontSize: 12,
+    color: '#171717',
+    fontFamily: 'Manrope',
+    lineHeight: 18,
+  },
+  termsLink: {
+    fontSize: 12,
+    color: '#635BFF',
+    fontWeight: '600',
+    fontFamily: 'Manrope',
+  },
+
+  // ── Continue Button ────────────────────────────────────────────────────────
+  loginButton: {
+    backgroundColor: '#635BFF',
+    borderRadius: 10,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#635BFF',
     shadowOffset: { width: 0, height: 6 },
     shadowOpacity: 0.35,
     shadowRadius: 12,
     elevation: 6,
-    marginBottom: 28,
+    marginBottom: 24,
   },
   loginButtonText: {
     color: '#FFFFFF',
     fontSize: 16,
     fontWeight: '700',
     letterSpacing: 0.3,
+    fontFamily: 'Manrope',
   },
 
-  // ── Divider-
+  // ── Divider ────────────────────────────────────────────────────────────────
   dividerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 16,
   },
   dividerLine: {
     flex: 1,
     height: 1,
-    backgroundColor: '#8C8C8C',
+    backgroundColor: '#D9D9D9',
   },
   dividerText: {
     marginHorizontal: 12,
     fontSize: 12,
     color: '#8C8C8C',
+    fontFamily: 'Manrope',
   },
 
-  // ── Social Buttons -
+  // ── Social Buttons ─────────────────────────────────────────────────────────
   socialContainer: {
     flexDirection: 'row',
     gap: 12,
-    marginBottom: 36,
+    marginBottom: 28,
   },
   socialButton: {
     flex: 1,
@@ -146,14 +237,14 @@ const style = StyleSheet.create({
     shadowRadius: 4,
     elevation: 2,
   },
-
   socialButtonText: {
     fontSize: 14,
     fontWeight: '600',
     color: '#141414',
+    fontFamily: 'Manrope',
   },
 
-  // ── Sign Up ───────────────────────────────────────────────────────────────
+  // ── Sign In ────────────────────────────────────────────────────────────────
   signUpContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
@@ -162,38 +253,15 @@ const style = StyleSheet.create({
   signUpText: {
     fontSize: 12,
     color: '#595959',
-    fontFamily: 'Manpore',
+    fontFamily: 'Manrope',
   },
   signUpLink: {
     fontSize: 12,
     color: '#635BFF',
-  },
-
-    //  Feedback Row (Strength OR Error — same spot)
-  feedbackRow: {
-    height: 24,
-    justifyContent: 'center',
-    marginBottom: 16,
-  },
-  strengthRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  strengthLabel: {
-    fontSize: 13,
-    color: '#595959',
+    fontWeight: '600',
     fontFamily: 'Manrope',
   },
-  strengthValue: {
-    fontSize: 13,
-    fontWeight: '700',
-    fontFamily: 'Manrope',
-  },
-  errorText: {
-    fontSize: 14,
-    color: '#FF317D',
-    fontFamily: 'Manrope',
-  },
+  
 });
 
 export default style;

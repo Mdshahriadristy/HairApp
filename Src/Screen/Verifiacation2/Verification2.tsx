@@ -12,18 +12,21 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigator/RootNavigator';
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import styles from './Style';
 import RefreshIcon from '../../components/svg/RefreshIcon';
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+type RootStackParamList = {
+  VerificationComplete: undefined;
+};
 
 const OTP_LENGTH = 6;
 const RESEND_TIMER = 45;
 
-const Setnewpass = () => {
-  const navigation = useNavigation<NavigationProp>();
+const Verification2 = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(''));
   const [timer, setTimer] = useState(RESEND_TIMER);
   const [canResend, setCanResend] = useState(false);
@@ -64,18 +67,10 @@ const Setnewpass = () => {
     inputRefs.current[0]?.focus();
   };
 
-  // ── NEW: Reset all OTP fields and refocus first input ──
-  const handleReset = () => {
-    navigation.navigate('CreateAccount');
-    setOtp(Array(OTP_LENGTH).fill(''));
-    inputRefs.current[0]?.focus();
-  };
-
   const handleContinue = () => {
     const code = otp.join('');
     if (code.length < OTP_LENGTH) return;
-    console.log('OTP submitted:', code);
-    navigation.navigate('ConfirmedPassword');
+    navigation.navigate('VerificationComplete');
   };
 
   const formatTimer = (seconds: number) => {
@@ -85,7 +80,6 @@ const Setnewpass = () => {
   };
 
   const isOtpComplete = otp.join('').length === OTP_LENGTH;
-  const hasAnyInput = otp.some(d => d !== '');
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -116,17 +110,6 @@ const Setnewpass = () => {
           <View style={styles.inputGroup}>
             <View style={styles.otpLabelRow}>
               <Text style={styles.label}>Type your 6 digits Security code</Text>
-
-              {/* ── Reset Button (visible only when at least one digit entered) ── */}
-              {hasAnyInput && (
-                <TouchableOpacity
-                  onPress={handleReset}
-                  style={styles.resetButton}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.resetButtonText}>Reset</Text>
-                </TouchableOpacity>
-              )}
             </View>
 
             {/* 6 OTP Boxes */}
@@ -196,4 +179,4 @@ const Setnewpass = () => {
   );
 };
 
-export default Setnewpass;
+export default Verification2;
