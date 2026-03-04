@@ -61,15 +61,14 @@ const style = StyleSheet.create({
     color: '#141414',
     textAlign: 'center',
     fontFamily: 'Manrope',
-    lineHeight: 20,
+
     marginBottom: 24,
-    paddingHorizontal: 8,
   },
 
   // ── Profile Photo ──
   photoWrapper: {
     alignItems: 'center',
-    marginBottom: 28,
+    marginBottom: 24,
   },
   photoCircle: {
     width: 88,
@@ -96,9 +95,9 @@ const style = StyleSheet.create({
 
   // ── Section Title ──
   sectionTitle: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '700',
-    color: '#635BFF',
+    color: '#171717',
     fontFamily: 'Manrope',
     marginBottom: 16,
   },
@@ -110,18 +109,20 @@ const style = StyleSheet.create({
     color: '#171717',
     fontFamily: 'Manrope',
     marginBottom: 6,
+    gap: 6,
   },
   inputWrapper: {
     flexDirection: 'row',
     alignItems: 'center',
     borderWidth: 1.5,
     borderColor: '#E5E5EC',
-    borderRadius: 10,
+    borderRadius: 14,
     paddingHorizontal: 12,
-    height: 48,
+    height: 50,
     backgroundColor: '#FFFFFF',
+    fontSize: 16,
     marginBottom: 4,
-    gap: 10,
+    gap: 4,
   },
   inputDisabled: {
     backgroundColor: '#F5F5F5',
@@ -142,58 +143,20 @@ const style = StyleSheet.create({
     fontSize: 11,
     color: '#888888',
     fontFamily: 'Manrope',
-    marginBottom: 16,
+    marginBottom: 6,
     marginLeft: 2,
-  },
-
-  // ── Phone ──
-  phoneRow: {
-    flexDirection: 'row',
-    gap: 10,
-    marginBottom: 32,
-  },
-  countryCode: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1.5,
-    borderColor: '#E5E5EC',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    height: 48,
-    gap: 6,
-    backgroundColor: '#FFFFFF',
-  },
-  flagText: {
-    fontSize: 18,
-  },
-  countryCodeText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#171717',
-    fontFamily: 'Manrope',
-  },
-  phoneInput: {
-    flex: 1,
-    borderWidth: 1.5,
-    borderColor: '#E5E5EC',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    height: 48,
-    fontSize: 14,
-    color: '#171717',
-    fontFamily: 'Manrope',
-    backgroundColor: '#FFFFFF',
   },
 
   // ── Buttons ──
   buttonRow: {
     flexDirection: 'row',
-    marginTop: 224,
-    gap: 12,
+    marginTop: 193.5,
+    gap: 16,
   },
   backButton: {
     flex: 1,
     height: 46,
+
     borderWidth: 1.5,
     borderColor: '#635BFF',
     borderRadius: 8,
@@ -224,6 +187,29 @@ const style = StyleSheet.create({
     fontSize: 15,
     fontWeight: '700',
     fontFamily: 'Manrope',
+  },
+
+  text: {
+    color: '#A3A3A3',
+  },
+  BoxContainer: {
+    gap: 16,
+  },
+
+  inputWrapperSelected: {
+    backgroundColor: '#635BFF',
+    borderColor: '#635BFF',
+  },
+  textSelected: {
+    color: '#FFFFFF',
+
+    fontFamily: 'Manrope',
+    fontSize: 16,
+  },
+  continueButtonDisabled: {
+    backgroundColor: '#B0ADFF',
+    shadowOpacity: 0,
+    elevation: 0,
   },
 });
 

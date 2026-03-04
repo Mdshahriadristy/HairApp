@@ -1,6 +1,5 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-// import ProfileSetUp1 from './Src/Screen/ProfileSetUp/ProfileSetUp1';
 
 
 
@@ -11,7 +10,6 @@ const App = () => {
     <SafeAreaProvider>
       <RootNavigator />
 
-      {/* <ProfileSetUp1/> */}
 
     </SafeAreaProvider>
   );

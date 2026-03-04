@@ -69,7 +69,7 @@ const style = StyleSheet.create({
   // ── Profile Photo ──
   photoWrapper: {
     alignItems: 'center',
-    marginBottom: 28,
+    marginBottom: 24,
   },
   photoCircle: {
     width: 88,
@@ -96,7 +96,7 @@ const style = StyleSheet.create({
 
   // ── Section Title ──
   sectionTitle: {
-    fontSize: 15,
+    fontSize: 18,
     fontWeight: '700',
     color: '#635BFF',
     fontFamily: 'Manrope',
@@ -110,6 +110,7 @@ const style = StyleSheet.create({
     color: '#171717',
     fontFamily: 'Manrope',
     marginBottom: 6,
+    gap: 16,
   },
   inputWrapper: {
     flexDirection: 'row',
@@ -118,10 +119,10 @@ const style = StyleSheet.create({
     borderColor: '#E5E5EC',
     borderRadius: 10,
     paddingHorizontal: 12,
-    height: 48,
+    height: 46,
     backgroundColor: '#FFFFFF',
     marginBottom: 4,
-    gap: 10,
+    gap: 4,
   },
   inputDisabled: {
     backgroundColor: '#F5F5F5',
@@ -142,54 +143,15 @@ const style = StyleSheet.create({
     fontSize: 11,
     color: '#888888',
     fontFamily: 'Manrope',
-    marginBottom: 16,
+    marginBottom: 6,
     marginLeft: 2,
-  },
-
-  // ── Phone ──
-  phoneRow: {
-    flexDirection: 'row',
-    gap: 10,
-    marginBottom: 32,
-  },
-  countryCode: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    borderWidth: 1.5,
-    borderColor: '#E5E5EC',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    height: 48,
-    gap: 6,
-    backgroundColor: '#FFFFFF',
-  },
-  flagText: {
-    fontSize: 18,
-  },
-  countryCodeText: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#171717',
-    fontFamily: 'Manrope',
-  },
-  phoneInput: {
-    flex: 1,
-    borderWidth: 1.5,
-    borderColor: '#E5E5EC',
-    borderRadius: 10,
-    paddingHorizontal: 12,
-    height: 48,
-    fontSize: 14,
-    color: '#171717',
-    fontFamily: 'Manrope',
-    backgroundColor: '#FFFFFF',
   },
 
   // ── Buttons ──
   buttonRow: {
     flexDirection: 'row',
-    marginTop: 224,
-    gap: 12,
+    marginTop:16,
+    gap: 16,
   },
   backButton: {
     flex: 1,
@@ -225,6 +187,51 @@ const style = StyleSheet.create({
     fontWeight: '700',
     fontFamily: 'Manrope',
   },
+  Vatid: {
+    flexDirection: 'row',
+  },
+  Starcolor: {
+    color: '#f70909',
+  },
+countrycode: {
+  flex:1,
+  flexDirection: 'row',
+  gap: 16,
+  marginBottom: 4,
+
+},
+
+inputWrapper1:{
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1.5,
+    borderColor: '#E5E5EC',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    width:224,
+    height: 46,
+    backgroundColor: '#FFFFFF',
+    marginBottom: 4,
+    gap: 4,
+
+},
+inputWrapper2:{
+
+      flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1.5,
+    borderColor: '#E5E5EC',
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    width:140,
+    height: 46,
+    backgroundColor: '#FFFFFF',
+    marginBottom: 4,
+    gap: 4,
+  
+
+},
+
 });
 
 export default style;

@@ -64,12 +64,7 @@ const Setnewpass = () => {
     inputRefs.current[0]?.focus();
   };
 
-  // ── NEW: Reset all OTP fields and refocus first input ──
-  const handleReset = () => {
-    navigation.navigate('CreateAccount');
-    setOtp(Array(OTP_LENGTH).fill(''));
-    inputRefs.current[0]?.focus();
-  };
+
 
   const handleContinue = () => {
     const code = otp.join('');
@@ -85,7 +80,7 @@ const Setnewpass = () => {
   };
 
   const isOtpComplete = otp.join('').length === OTP_LENGTH;
-  const hasAnyInput = otp.some(d => d !== '');
+
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -117,16 +112,7 @@ const Setnewpass = () => {
             <View style={styles.otpLabelRow}>
               <Text style={styles.label}>Type your 6 digits Security code</Text>
 
-              {/* ── Reset Button (visible only when at least one digit entered) ── */}
-              {hasAnyInput && (
-                <TouchableOpacity
-                  onPress={handleReset}
-                  style={styles.resetButton}
-                  activeOpacity={0.7}
-                >
-                  <Text style={styles.resetButtonText}>Reset</Text>
-                </TouchableOpacity>
-              )}
+         
             </View>
 
             {/* 6 OTP Boxes */}

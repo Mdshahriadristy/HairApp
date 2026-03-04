@@ -18,20 +18,28 @@ import Nameicon from '../../components/svg/Nameicon';
 import EditDocumentIcon from '../../components/svg/EditDocumentIcon';
 import MailIcon from '../../components/svg/MailIcon';
 import ActivityProfileIcon from '../../components/svg/ActivityProfileIcon';
+import SwapIcon from '../../components/svg/SwapIcon';
 
 type RootStackParamList = {
-  ProfileSetUp1: undefined;
   BusniessSetup: undefined;
+  BusniessSetup2: undefined;
 };
 
-type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+type NavigationProp = NativeStackNavigationProp<
+  RootStackParamList,
+  'BusniessSetup2'
+>;
 
-const ProfileSetUp1Screen = () => {
+const BusniessSetup2 = () => {
   const navigation = useNavigation<NavigationProp>();
 
-  const [fullName, setFullName] = useState('Darlene Robertson');
+  const [fullName, setFullName] = useState('');
   const [Mail, setEmail] = useState('');
-  const [phone, setPhone] = useState('0931567 890');
+  const [cityName, setCityName] = useState('');
+  const [postcode, setPostcode] = useState('');
+  const [VATid, setVATid] = useState('');
+  const [Addressline1, setAddressline1] = useState('');
+  const [Addressline2, setAddressline2] = useState('');
   const [profileImage, setProfileImage] = useState<string | null>(null);
 
   const handleBack = () => {
@@ -39,7 +47,7 @@ const ProfileSetUp1Screen = () => {
   };
 
   const handleContinue = () => {
-    navigation.navigate('BusniessSetup');
+    navigation.navigate('BusniessSetup2');
   };
 
   const handlePickImage = () => {
@@ -66,17 +74,15 @@ const ProfileSetUp1Screen = () => {
         keyboardShouldPersistTaps="handled"
         showsVerticalScrollIndicator={false}
       >
-        {/* Top Header */}
         <Text style={styles.headerTitle}>Verify your identity</Text>
 
-        {/* Progress Bar */}
         <View style={styles.progressRow}>
           {[1, 2, 3, 4].map(step => (
             <View
               key={step}
               style={[
                 styles.progressBar,
-                step === 1
+                step === 2
                   ? styles.progressBarActive
                   : styles.progressBarInactive,
               ]}
@@ -84,15 +90,13 @@ const ProfileSetUp1Screen = () => {
           ))}
         </View>
 
-        <Text style={styles.stepLabel}>Step 1 of 4</Text>
+        <Text style={styles.stepLabel}>Step 2 of 4</Text>
 
-        {/* Title */}
-        <Text style={styles.title}>Your Profile Photo</Text>
+        <Text style={styles.title}>Your Business Logo</Text>
         <Text style={styles.subtitle}>
-          Upload a professional photo to help others recognize you.
+          Upload your business logo to help others recognize you.
         </Text>
 
-        {/* Profile Photo */}
         <View style={styles.photoWrapper}>
           <TouchableOpacity
             style={styles.photoCircle}
@@ -109,19 +113,17 @@ const ProfileSetUp1Screen = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Personal Information Section */}
-        <Text style={styles.sectionTitle}>Personal Information</Text>
+        <Text style={styles.sectionTitle}>Contact & Business Information</Text>
 
-        {/* Full Name */}
-        <Text style={styles.inputLabel}>Full Name</Text>
+        <Text style={styles.inputLabel}>Legal business name</Text>
         <View style={styles.inputWrapper}>
           <Nameicon size={13.33} />
           <TextInput
             style={styles.textInput}
             value={fullName}
             onChangeText={setFullName}
-            placeholder=" "
-            placeholderTextColor="#AAAAAA"
+            placeholder="Bella Vista Salon"
+            placeholderTextColor="#171717"
             editable={true}
             autoCorrect={false}
           />
@@ -129,39 +131,94 @@ const ProfileSetUp1Screen = () => {
             <EditDocumentIcon size={15} color="#000" />
           </TouchableOpacity>
         </View>
-        <Text style={styles.helperText}>Must match your government ID.</Text>
 
-        {/* Email Address */}
-        <Text style={styles.inputLabel}>Email Address</Text>
+        <Text style={styles.inputLabel}>Certified Email (PEC)</Text>
         <View style={styles.inputWrapper}>
-          <MailIcon color="#A3A3A3" />
+          <MailIcon />
           <TextInput
             style={styles.textInput}
             value={Mail}
             onChangeText={setEmail}
-            placeholder="wildzrl8@gmail.com"
-            placeholderTextColor="#AAAAAA"
+            placeholder="bella.vista.salon@pec.it"
+            placeholderTextColor="#171717"
             editable={true}
             autoCorrect={false}
           />
         </View>
 
-        {/* Phone Number */}
-        <Text style={styles.inputLabel}>Phone number</Text>
-        <View style={styles.phoneRow}>
-          <View style={styles.countryCode}>
-            <Text style={styles.flagText}>🇮🇹</Text>
-            <Text style={styles.countryCodeText}>+39</Text>
-          </View>
+        <View style={styles.Vatid}>
+          <Text style={styles.inputLabel}>VAT ID</Text>
+          <Text style={styles.Starcolor}> *</Text>
+        </View>
+        <View style={styles.inputWrapper}>
           <TextInput
-            style={styles.phoneInput}
-            value={phone}
-            onChangeText={setPhone}
-            keyboardType="phone-pad"
-            placeholder="Phone number"
-            placeholderTextColor="#AAAAAA"
+            style={styles.textInput}
+            value={VATid}
+            onChangeText={setVATid}
+            placeholder="984654651321654"
+            placeholderTextColor="#171717"
             editable={true}
+            autoCorrect={false}
           />
+        </View>
+
+        <Text style={styles.inputLabel}>Address Line 1</Text>
+        <View style={styles.inputWrapper}>
+          <SwapIcon size={20} />
+          <TextInput
+            style={styles.textInput}
+            value={Addressline1}
+            onChangeText={setAddressline1}
+            placeholder="Office Address"
+            placeholderTextColor="#171717"
+            editable={true}
+            autoCorrect={false}
+          />
+        </View>
+
+        <Text style={styles.inputLabel}>Address Line 2</Text>
+        <View style={styles.inputWrapper}>
+          <SwapIcon size={20} />
+          <TextInput
+            style={styles.textInput}
+            value={Addressline2}
+            onChangeText={setAddressline2}
+            placeholder="Office Address"
+            placeholderTextColor="#171717"
+            editable={true}
+            autoCorrect={false}
+          />
+        </View>
+
+        <View style={styles.countrycode}>
+          <View>
+            <Text style={styles.inputLabel}>City Name</Text>
+            <View style={styles.inputWrapper1}>
+              <TextInput
+                style={styles.textInput}
+                value={cityName}
+                onChangeText={setCityName}
+                placeholder="Rome"
+                placeholderTextColor="#171717"
+                autoCorrect={false}
+              />
+            </View>
+          </View>
+
+          <View>
+            <Text style={styles.inputLabel}>Post Code</Text>
+            <View style={styles.inputWrapper2}>
+              <TextInput
+                style={styles.textInput}
+                value={postcode}
+                onChangeText={setPostcode}
+                placeholder="00186"
+                placeholderTextColor="#171717"
+                keyboardType="numeric"
+                autoCorrect={false}
+              />
+            </View>
+          </View>
         </View>
 
         {/* Bottom Buttons */}
@@ -186,4 +243,4 @@ const ProfileSetUp1Screen = () => {
   );
 };
 
-export default ProfileSetUp1Screen;
+export default BusniessSetup2;

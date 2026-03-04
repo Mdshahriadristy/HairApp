@@ -13,6 +13,9 @@ import CreateAccount from '../Screen/CreateAccount/CreateAccount';
 import Verification2 from '../Screen/Verifiacation2/Verification2';
 import VerificationComplete from '../Screen/VerificationComplete/VerificationComplete';
 import ProfileSetUp1Screen from '../Screen/ProfileSetUp/ProfileSetUp1';
+import BusniessSetup from '../Screen/BusniessSetup/BusniessSetup';
+import BusniessSetup2 from '../Screen/BusniessSetup2/BusniessSetup2';
+import BusniessSetup3 from '../Screen/BusniessSetup3/BusniessSetup3';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -26,7 +29,10 @@ export type RootStackParamList = {
   CreateAccount: undefined;
   Verification2: undefined;
   VerificationComplete: undefined;
-  ProfileSetUp:undefined;
+  ProfileSetUp: undefined;
+  BusniessSetup: undefined;
+  BusniessSetup2: undefined;
+  BusniessSetup3: undefined;
 
   Home: undefined;
 };
@@ -49,10 +55,14 @@ const RootNavigator: React.FC = () => {
         <Stack.Screen name="ConfirmedPassword" component={ConfirmPass} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} />
         <Stack.Screen name="Verification2" component={Verification2} />
-        <Stack.Screen name="VerificationComplete" component={VerificationComplete} />
+        <Stack.Screen
+          name="VerificationComplete"
+          component={VerificationComplete}
+        />
         <Stack.Screen name="ProfileSetUp" component={ProfileSetUp1Screen} />
-
-
+        <Stack.Screen name="BusniessSetup" component={BusniessSetup} />
+        <Stack.Screen name="BusniessSetup2" component={BusniessSetup2} />
+        <Stack.Screen name="BusniessSetup3" component={BusniessSetup3} />
       </Stack.Navigator>
     </NavigationContainer>
   );
