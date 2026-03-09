@@ -11,15 +11,10 @@ import {
   StatusBar,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../../navigator/RootNavigator';
 import styles from './Style';
 import LockIcon from '../../components/svg/LockIcon';
 import EyeOffIcon from '../../components/svg/EyeOffIcon';
 import EyeOnIcon from '../../components/svg/EyeOnIcon';
-
-type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const getPasswordStrength = (
   pass: string,
@@ -38,8 +33,6 @@ const getPasswordStrength = (
 };
 
 const ConfirmPass = () => {
-  const navigation = useNavigation<NavigationProp>();
-
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -52,7 +45,6 @@ const ConfirmPass = () => {
   const handleReset = () => {
     if (isNotMatch || password.length === 0) return;
     console.log('Reset pressed', { password });
-    navigation.navigate('CreateAccount');
   };
 
   return (

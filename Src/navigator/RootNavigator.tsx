@@ -16,6 +16,9 @@ import ProfileSetUp1Screen from '../Screen/ProfileSetUp/ProfileSetUp1';
 import BusniessSetup from '../Screen/BusniessSetup/BusniessSetup';
 import BusniessSetup2 from '../Screen/BusniessSetup2/BusniessSetup2';
 import BusniessSetup3 from '../Screen/BusniessSetup3/BusniessSetup3';
+import PurchasePageScreen from '../Screen/Purches/PurchespageScreen';
+import PurchasePage1Screen from '../Screen/Purches1/Purchespage1Screen';
+import PurchasePage2Screen from '../Screen/Purches2/Purchespage2Screen';
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -33,6 +36,9 @@ export type RootStackParamList = {
   BusniessSetup: undefined;
   BusniessSetup2: undefined;
   BusniessSetup3: undefined;
+  Purches: undefined;
+  Purches1: undefined;
+  Purches2: undefined;
 
   Home: undefined;
 };
@@ -63,6 +69,9 @@ const RootNavigator: React.FC = () => {
         <Stack.Screen name="BusniessSetup" component={BusniessSetup} />
         <Stack.Screen name="BusniessSetup2" component={BusniessSetup2} />
         <Stack.Screen name="BusniessSetup3" component={BusniessSetup3} />
+        <Stack.Screen name="Purches" component={PurchasePageScreen} />
+        <Stack.Screen name="Purches1" component={PurchasePage1Screen} />
+        <Stack.Screen name="Purches2" component={PurchasePage2Screen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

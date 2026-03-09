@@ -1,4 +1,4 @@
- import { StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 const style = StyleSheet.create({
   safeArea: {
@@ -39,7 +39,7 @@ const style = StyleSheet.create({
     lineHeight: 22,
   },
 
-  //  Inputs 
+  //  Inputs
   inputGroup: {
     marginBottom: 12,
   },
@@ -109,13 +109,13 @@ const style = StyleSheet.create({
     justifyContent: 'center',
     shadowColor: '#5B5EFF',
     shadowOffset: { width: 0, height: 6 },
-    shadowOpacity: 0.35,
+    shadowOpacity: 100,
     shadowRadius: 12,
     elevation: 6,
     marginTop: 8,
   },
   loginButtonDisabled: {
-    opacity: 0.5,
+    opacity: 100,
   },
   loginButtonText: {
     color: '#FFFFFF',

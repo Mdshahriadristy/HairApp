@@ -11,7 +11,6 @@ const style = StyleSheet.create({
     flexGrow: 1,
     padding: 16,
     paddingTop: 98,
-
   },
 
   // ── Logo ──────────────────────────────────────────────────────────────────

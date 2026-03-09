@@ -39,6 +39,7 @@ const slides: SlideItem[] = [
       'Manage appointments and \n staff schedules with a\n seamless calendar system',
     image: img1,
   },
+  
   {
     id: '2',
     title: 'Smart Inventory',

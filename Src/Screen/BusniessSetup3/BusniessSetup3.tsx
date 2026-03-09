@@ -7,7 +7,15 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import styles from './Sytle';
+
+type RootStackParamList = {
+  Purches: { selectedGoals: string[] };
+};
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const businessOptions = [
   'Manage team & shifts',
@@ -19,10 +27,16 @@ const businessOptions = [
 ];
 
 const BusniessSetup3 = () => {
+  const navigation = useNavigation<NavigationProp>();
   const [selected, setSelected] = useState<string[]>([]);
 
-  const handleBack = () => {};
-  const handleContinue = () => {};
+  const handleBack = () => {
+    navigation.goBack();
+  };
+
+  const handleContinue = () => {
+    navigation.navigate('Purches', { selectedGoals: selected });
+  };
 
   const toggleOption = (option: string) => {
     setSelected(prev =>
