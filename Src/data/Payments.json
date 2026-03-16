@@ -1,0 +1,50 @@
+[
+  {
+    "id": "1",
+    "name": "Isabella V.",
+    "service": "Full Balayage & Cut",
+    "time": "12:00 AM – 12:15 AM",
+    "status": "Confirmed",
+    "avatar": "https://randomuser.me/api/portraits/women/65.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Mia Thompson",
+    "service": "Color & Style",
+    "time": "2:00 PM – 2:45 PM",
+    "status": "Paid to Confirm",
+    "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "4:00 PM – 4:30 PM",
+    "status": "Expired",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+  {
+    "id": "4",
+    "name": "Luna Garcia",
+    "service": "Scalp Treatment",
+    "time": "5:30 PM – 6:00 PM",
+    "status": "Confirmed",
+    "avatar": "https://randomuser.me/api/portraits/women/90.jpg"
+  },
+  {
+    "id": "5",
+    "name": "Zoe Wilson",
+    "service": "Brazilian Blowout",
+    "time": "7:00 PM – 8:00 PM",
+    "status": "Paid to Confirm",
+    "avatar": "https://randomuser.me/api/portraits/women/38.jpg"
+  },
+  {
+    "id": "6",
+    "name": "Chloe Taylor",
+    "service": "Hair Gloss Treatment",
+    "time": "8:30 PM – 9:00 PM",
+    "status": "Expired",
+    "avatar": "https://randomuser.me/api/portraits/women/55.jpg"
+  }
+]

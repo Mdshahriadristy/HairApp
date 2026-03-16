@@ -1,0 +1,143 @@
+[
+  {
+    "id": "1",
+    "name": "Maria Fernandez",
+    "service": "Full Balayage & Cut",
+    "time": "12:00 AM – 12:15 AM",
+    "status": "Booked",
+    "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
+  },
+  {
+    "id": "2",
+    "name": "Sara Johnson",
+    "service": "Hair Color & Style",
+    "time": "1:00 PM – 1:45 PM",
+    "status": "Confirmed",
+    "avatar": "https://randomuser.me/api/portraits/women/32.jpg"
+  },
+  {
+    "id": "3",
+    "name": "Emma Williams",
+    "service": "Keratin Treatment",
+    "time": "3:00 PM – 4:00 PM",
+    "status": "Confirmed",
+    "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
+  },
+  {
+    "id": "4",
+    "name": "Olivia Brown",
+    "service": "Blowout & Trim",
+    "time": "5:00 PM – 5:30 PM",
+    "status": "Arrived",
+    "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+  },
+  {
+    "id": "5",
+    "name": "Sophia Davis",
+    "service": "Highlights & Toner",
+    "time": "6:00 PM – 7:00 PM",
+    "status": "Booked",
+    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
+  },
+  {
+    "id": "6",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Arrived",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+    {
+    "id": "7",
+    "name": "Sophia Davis",
+    "service": "Highlights & Toner",
+    "time": "6:00 PM – 7:00 PM",
+    "status": "Booked",
+    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
+  },
+    {
+    "id": "=8",
+    "name": "Sophia Davis",
+    "service": "Highlights & Toner",
+    "time": "6:00 PM – 7:00 PM",
+    "status": "Booked",
+    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
+  },
+    {
+    "id": "9",
+    "name": "Sophia Davis",
+    "service": "Highlights & Toner",
+    "time": "6:00 PM – 7:00 PM",
+    "status": "Booked",
+    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
+  },
+      {
+    "id": "10",
+    "name": "Sophia Davis",
+    "service": "Highlights & Toner",
+    "time": "6:00 PM – 7:00 PM",
+    "status": "Started",
+    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
+  },
+
+    {
+    "id": "11",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Started",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+    {
+    "id": "12",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Started",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+      {
+    "id": "13",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Started",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+      {
+    "id": "14",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Started",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+
+  {
+    "id": "15",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Cancelled",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+    {
+    "id": "16",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Complete",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  },
+    {
+    "id": "17",
+    "name": "Ava Martinez",
+    "service": "Deep Conditioning",
+    "time": "7:30 PM – 8:00 PM",
+    "status": "Complete",
+    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+  }
+
+
+
+]

@@ -19,7 +19,7 @@ import EyeOnIcon from '../../components/svg/EyeOnIcon';
 const getPasswordStrength = (
   pass: string,
 ): { label: string; color: string } => {
-  if (pass.length === 0) return { label: '', color: 'transparent' };
+  if (pass.length === 8) return { label: '', color: 'transparent' };
   if (pass.length < 8) return { label: 'Weak', color: '#E8A838' };
   const hasUpper = /[A-Z]/.test(pass);
   const hasLower = /[a-z]/.test(pass);
@@ -28,7 +28,7 @@ const getPasswordStrength = (
   const score = [hasUpper, hasLower, hasNumber, hasSpecial].filter(
     Boolean,
   ).length;
-  if (score >= 3) return { label: 'Strong', color: '#2FA36B' };
+  if (score < 10) return { label: 'Strong', color: '#2FA36B' };
   return { label: 'Weak', color: '#E8A838' };
 };
 

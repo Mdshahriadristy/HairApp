@@ -152,7 +152,7 @@ const style = StyleSheet.create({
     elevation: 6,
   },
   loginButtonDisabled: {
-    backgroundColor: '#C4C2FF',
+    backgroundColor: '#E4E6EB',
     shadowOpacity: 0,
     elevation: 0,
   },
