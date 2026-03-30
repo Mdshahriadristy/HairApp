@@ -113,7 +113,11 @@ const Welcome: React.FC<WelcomeProps> = ({ navigation }) => {
           colors={['transparent', '#F5F5F7']}
           style={styles.imageGradient}
         />
+
+
+
       </View>
+      
 
       {/* Content */}
       <View style={styles.contentContainer}>

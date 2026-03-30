@@ -9,6 +9,7 @@ import {
   Platform,
   ScrollView,
   StatusBar,
+  Alert, // ✅ Alert import
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './Style';
@@ -25,7 +26,24 @@ const LoginScreen = ({ navigation }: any) => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = () => {
+    // ✅ Validation check(just Check)
+    if (!email.trim() && !password.trim()) {
+      Alert.alert('Error', 'Please enter Email and Password');
+      return;
+    }
+
+    if (!email.trim()) {
+      Alert.alert('Error', 'Please enter your Email');
+      return;
+    }
+
+    if (!password.trim()) {
+      Alert.alert('Error', 'Please enter your Password');
+      return;
+    }
+
     console.log('Login pressed', { email, password });
+    navigation?.navigate('ButtonTabs'); 
   };
 
   const handleGoogleLogin = () => {
@@ -152,15 +170,12 @@ const LoginScreen = ({ navigation }: any) => {
             </TouchableOpacity>
           </View>
 
-
           {/* Sign Up */}
           <View style={styles.signUpContainer}>
             <Text style={styles.signUpText}>Don't have an account? </Text>
             <TouchableOpacity
               onPress={() => navigation?.navigate('CreateAccount')}
             >
-
-              {/* ✅ onPress add */}
               <Text style={styles.signUpLink}>Sign up</Text>
             </TouchableOpacity>
           </View>
