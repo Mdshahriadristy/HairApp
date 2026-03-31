@@ -1,9 +1,9 @@
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-// import AllPayments from './Src/Screen/HomeScreenAppoinments/All Payments/Allpayments';
+import AllPayments from './Src/Screen/HomeScreenAppoinments/All Payments/Allpayments';
 
-import HomeScreenAll from './Src/Screen/HomeScreenAppoinments/HomeScreenAll/HomeScreenAll';
+// import HomeScreenAll from './Src/Screen/HomeScreenAppoinments/HomeScreenAll/HomeScreenAll';
 
 
 
@@ -15,9 +15,9 @@ const App = () => {
       {/* <RootNavigator /> */}
 
 
-      <HomeScreenAll/>
+      {/* <HomeScreenAll/> */}
 
-      {/* <AllPayments/> */}
+      <AllPayments/>
 
 
 

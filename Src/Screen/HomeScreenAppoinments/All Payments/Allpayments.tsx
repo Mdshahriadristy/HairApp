@@ -9,14 +9,17 @@ import {
   Image,
   SectionList,
   StatusBar,
+  StyleSheet,
 } from 'react-native';
-import { ChevronLeft, ChevronDown, ChevronUp } from 'lucide-react-native';
+import { ChevronLeft, ChevronDown, ChevronUp, Search, ChevronRight } from 'lucide-react-native';
 import { calStyles, fStyles, cardStyles, mainStyles } from './Style';
 
 import paymentsJson from '../../../data/Payments.json';
 import DownUpicon from '../../../components/svg/DownUpicon';
+import Calendaricon from '../../../components/svg/Calendericon';
 import PaymentCard from '../../../components/HomeScreenAllComponents/PaymentCard';
 import type { Payment } from '../../../types';
+import CalendarEditicon from '../../../components/svg/CalenderEditicon';
 
 // ─── Local Types ──────────────────────────────────────────────────────────────
 interface DateFilter {
@@ -24,7 +27,6 @@ interface DateFilter {
   endDate: Date | null;
   period: string | null;
 }
-
 interface SectionData {
   title: string;
   data: Payment[];
@@ -32,116 +34,77 @@ interface SectionData {
 
 const ALL_PAYMENTS: Payment[] = paymentsJson as unknown as Payment[];
 
-// ─── Status Config ─────────────────────────────────────────────────────────────
-const STATUS_CONFIG: Record<
-  string,
-  { bg: string; color: string; border: string }
-> = {
-  Confirmed: { bg: '#E0FFFE', color: '#00837E', border: 'transparent' },
-  'Paid · to Confirm': {
-    bg: '#FFFDE5',
-    color: '#A88400',
-    border: 'transparent',
-  },
-  Expired: { bg: '#FFECF0', color: '#EB5757', border: 'transparent' },
-  Started: { bg: '#EAFFFF', color: '#00BEB8', border: 'transparent' },
-  Cancelled: { bg: '#FEF0F0', color: '#FF317D', border: 'transparent' },
-};
+// ─── Tab Config — per-tab color ───────────────────────────────────────────────
+type TabCfg = { label: string; status: string | null; activeColor: string };
 
-//  Payment badge colors
+const PAY_TABS: TabCfg[] = [
+  { label: 'All',              status: null,               activeColor: '#635BFF' },
+  { label: 'Paid · to Confirm',status: 'Paid · to Confirm',activeColor: '#F2994A' },
+  { label: 'Expired',          status: 'Expired',          activeColor: '#FF317D' },
+  { label: 'Confirmed',        status: 'Confirmed',        activeColor: '#27AE60' },
+  { label: 'Started',          status: 'Started',          activeColor: '#00BEB8' },
+];
+
+// ─── Badge Map — matches screenshot pill colors ───────────────────────────────
 const PAY_BADGE_MAP: Record<string, { bg: string; text: string }> = {
-  'Paid · to Confirm': { bg: '#FFF8E7', text: '#F2994A' },
-  Expired: { bg: '#FFECF0', text: '#FF317D' },
-  Confirmed: { bg: '#E7FFEC', text: '#36C76C' },
-  Started: { bg: '#EAFFFF', text: '#00BEB8' },
+  'Paid · to Confirm':  { bg: '#FFF8E7', text: '#F2994A' },
+  'Paid . to Confirm':  { bg: '#FFF8E7', text: '#F2994A' },
+  'Paid · toConfirm':   { bg: '#FFF8E7', text: '#F2994A' },
+  Expired:              { bg: '#FFECF0', text: '#FF317D' },
+  Confirmed:            { bg: '#E7FFEC', text: '#27AE60' },
+  Started:              { bg: '#EAFFFF', text: '#00BEB8' },
+  Cancelled:            { bg: '#FEF0F0', text: '#FF317D' },
 };
 
-// ─── Filter Tabs ──────────────────────────────────────────────────────────────
-const FILTER_TABS: string[] = [
-  'All',
-  'Paid · to Confirm',
-  'Expired',
-  'Started',
-  'Confirmed',
-];
-
+// ─── Date Helpers ─────────────────────────────────────────────────────────────
 const PERIODS = ['Today', 'This Week', 'This Month', 'Last Month'];
-const DAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const MONTHS = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
+const DAYS    = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MONTHS  = [
+  'January','February','March','April','May','June',
+  'July','August','September','October','November','December',
 ];
 
-// ─── Helpers ──────────────────────────────────────────────────────────────────
 function parseDate(str: string): Date {
   const [y, m, d] = str.split('-').map(Number);
   return new Date(y, m - 1, d);
 }
-function fmtDate(date: Date): string {
-  const d = String(date.getDate()).padStart(2, '0');
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  return `${d}/${m}/${date.getFullYear()}`;
+function fmtDate(d: Date): string {
+  return `${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}/${d.getFullYear()}`;
+}
+// Format for section header: "Feb 28, 2026"
+function fmtSectionDate(str: string): string {
+  try {
+    const [y, m, d] = str.split('-').map(Number);
+    const date = new Date(y, m - 1, d);
+    const monthShort = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    return `${monthShort[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
+  } catch {
+    return str;
+  }
 }
 function sameDay(a: Date, b: Date): boolean {
-  return (
-    a.getFullYear() === b.getFullYear() &&
-    a.getMonth() === b.getMonth() &&
-    a.getDate() === b.getDate()
-  );
+  return a.getFullYear()===b.getFullYear() && a.getMonth()===b.getMonth() && a.getDate()===b.getDate();
 }
 function todayDate(): Date {
-  const d = new Date();
-  d.setHours(0, 0, 0, 0);
-  return d;
+  const d = new Date(); d.setHours(0,0,0,0); return d;
 }
-function daysInMonth(y: number, m: number): number {
-  return new Date(y, m + 1, 0).getDate();
-}
-function firstDayOfMonth(y: number, m: number): number {
-  return new Date(y, m, 1).getDay();
-}
+function daysInMonth(y: number, m: number): number { return new Date(y, m+1, 0).getDate(); }
+function firstDayOfMonth(y: number, m: number): number { return new Date(y, m, 1).getDay(); }
 
 // ─── Calendar ─────────────────────────────────────────────────────────────────
-interface CalendarProps {
+const Calendar: React.FC<{
   value: Date | null;
-  onChange: (date: Date) => void;
+  onChange: (d: Date) => void;
   minDate?: Date | null;
-}
-
-const Calendar: React.FC<CalendarProps> = ({ value, onChange, minDate }) => {
+}> = ({ value, onChange, minDate }) => {
   const now = value ?? todayDate();
-  const [viewYear, setViewYear] = useState(now.getFullYear());
+  const [viewYear, setViewYear]   = useState(now.getFullYear());
   const [viewMonth, setViewMonth] = useState(now.getMonth());
-
-  const totalDays = daysInMonth(viewYear, viewMonth);
-  const firstDay = firstDayOfMonth(viewYear, viewMonth);
   const today = todayDate();
 
   const cells: (Date | null)[] = [];
-  for (let i = 0; i < firstDay; i++) cells.push(null);
-  for (let d = 1; d <= totalDays; d++)
-    cells.push(new Date(viewYear, viewMonth, d));
-
-  const prevMonth = () => {
-    viewMonth === 0
-      ? (setViewMonth(11), setViewYear(y => y - 1))
-      : setViewMonth(m => m - 1);
-  };
-  const nextMonth = () => {
-    viewMonth === 11
-      ? (setViewMonth(0), setViewYear(y => y + 1))
-      : setViewMonth(m => m + 1);
-  };
+  for (let i = 0; i < firstDayOfMonth(viewYear, viewMonth); i++) cells.push(null);
+  for (let d = 1; d <= daysInMonth(viewYear, viewMonth); d++) cells.push(new Date(viewYear, viewMonth, d));
 
   const rows: (Date | null)[][] = [];
   for (let i = 0; i < cells.length; i += 7) rows.push(cells.slice(i, i + 7));
@@ -149,51 +112,38 @@ const Calendar: React.FC<CalendarProps> = ({ value, onChange, minDate }) => {
   return (
     <View style={calStyles.wrapper}>
       <View style={calStyles.nav}>
-        <TouchableOpacity onPress={prevMonth} style={calStyles.navBtn}>
-          <Text style={calStyles.navArrow}>‹</Text>
+        <TouchableOpacity
+          onPress={() => viewMonth===0 ? (setViewMonth(11), setViewYear(y=>y-1)) : setViewMonth(m=>m-1)}
+          style={calStyles.navBtn}
+        >
+          <ChevronLeft  size={22}/>
         </TouchableOpacity>
-        <Text style={calStyles.navTitle}>
-          {MONTHS[viewMonth]} {viewYear}
-        </Text>
-        <TouchableOpacity onPress={nextMonth} style={calStyles.navBtn}>
-          <Text style={calStyles.navArrow}>›</Text>
+        <Text style={calStyles.navTitle}>{MONTHS[viewMonth]} {viewYear}</Text>
+        <TouchableOpacity
+          onPress={() => viewMonth===11 ? (setViewMonth(0), setViewYear(y=>y+1)) : setViewMonth(m=>m+1)}
+          style={calStyles.navBtn}
+        >
+          <ChevronRight size={22}/>
         </TouchableOpacity>
       </View>
-
       <View style={calStyles.row}>
-        {DAYS.map(d => (
-          <Text key={d} style={calStyles.dayHeader}>
-            {d}
-          </Text>
-        ))}
+        {DAYS.map(d => <Text key={d} style={calStyles.dayHeader}>{d}</Text>)}
       </View>
-
       {rows.map((row, ri) => (
         <View key={ri} style={calStyles.row}>
           {row.map((date, ci) => {
             if (!date) return <View key={ci} style={calStyles.cell} />;
-            const isSelected = value ? sameDay(date, value) : false;
+            const isSel   = value ? sameDay(date, value) : false;
             const isToday = sameDay(date, today);
-            const isDisabled = minDate ? date < minDate : false;
+            const isDis   = minDate ? date < minDate : false;
             return (
               <TouchableOpacity
                 key={ci}
-                onPress={() => !isDisabled && onChange(date)}
-                disabled={isDisabled}
-                style={[
-                  calStyles.cell,
-                  isSelected && calStyles.cellSelected,
-                  !isSelected && isToday && calStyles.cellToday,
-                ]}
+                onPress={() => !isDis && onChange(date)}
+                disabled={isDis}
+                style={[calStyles.cell, isSel && calStyles.cellSelected, !isSel && isToday && calStyles.cellToday]}
               >
-                <Text
-                  style={[
-                    calStyles.cellText,
-                    isSelected && calStyles.cellTextSelected,
-                    !isSelected && isToday && calStyles.cellTextToday,
-                    isDisabled && calStyles.cellTextDisabled,
-                  ]}
-                >
+                <Text style={[calStyles.cellText, isSel && calStyles.cellTextSelected, !isSel && isToday && calStyles.cellTextToday, isDis && calStyles.cellTextDisabled]}>
                   {date.getDate()}
                 </Text>
               </TouchableOpacity>
@@ -206,20 +156,16 @@ const Calendar: React.FC<CalendarProps> = ({ value, onChange, minDate }) => {
 };
 
 // ─── Filter Modal ─────────────────────────────────────────────────────────────
-interface FilterModalProps {
+
+
+const FilterModal: React.FC<{
   visible: boolean;
   onClose: () => void;
-  onApply: (filter: DateFilter) => void;
-}
-
-const FilterModal: React.FC<FilterModalProps> = ({
-  visible,
-  onClose,
-  onApply,
-}) => {
-  const [selected, setSelected] = useState<string | null>(null);
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
+  onApply: (f: DateFilter) => void;
+}> = ({ visible, onClose, onApply }) => {
+  const [selected, setSelected]       = useState<string | null>(null);
+  const [startDate, setStartDate]     = useState<Date | null>(null);
+  const [endDate, setEndDate]         = useState<Date | null>(null);
   const [calendarFor, setCalendarFor] = useState<'start' | 'end' | null>(null);
 
   const handlePeriod = (p: string) => {
@@ -230,12 +176,9 @@ const FilterModal: React.FC<FilterModalProps> = ({
       setStartDate(new Date(t));
       setEndDate(new Date(t));
     } else if (p === 'This Week') {
-      const s = new Date(t);
-      s.setDate(t.getDate() - t.getDay());
-      const e = new Date(s);
-      e.setDate(s.getDate() + 6);
-      setStartDate(s);
-      setEndDate(e);
+      const s = new Date(t); s.setDate(t.getDate() - t.getDay());
+      const e = new Date(s); e.setDate(s.getDate() + 6);
+      setStartDate(s); setEndDate(e);
     } else if (p === 'This Month') {
       setStartDate(new Date(t.getFullYear(), t.getMonth(), 1));
       setEndDate(new Date(t.getFullYear(), t.getMonth() + 1, 0));
@@ -243,18 +186,6 @@ const FilterModal: React.FC<FilterModalProps> = ({
       setStartDate(new Date(t.getFullYear(), t.getMonth() - 1, 1));
       setEndDate(new Date(t.getFullYear(), t.getMonth(), 0));
     }
-  };
-
-  const handleCalendarPick = (date: Date) => {
-    if (calendarFor === 'start') {
-      setStartDate(date);
-      setEndDate(null);
-      setCalendarFor('end');
-    } else {
-      setEndDate(date);
-      setCalendarFor(null);
-    }
-    setSelected(null);
   };
 
   const handleClear = () => {
@@ -271,206 +202,270 @@ const FilterModal: React.FC<FilterModalProps> = ({
       animationType="fade"
       onRequestClose={onClose}
     >
+      {/* ── Full-screen dim — tap anywhere outside column to close ── */}
       <TouchableOpacity
         style={fStyles.overlay}
         activeOpacity={1}
         onPress={onClose}
       >
-        <TouchableOpacity activeOpacity={1} style={fStyles.sheet}>
-          <Text style={fStyles.title}>Select Period</Text>
+        {/* ── Column: sheet on top, calendarCard below ── */}
+        <TouchableOpacity
+          activeOpacity={1}
+          style={fStyles.column}
+          onPress={() => {}}
+        >
 
-          <View style={fStyles.periodGrid}>
-            {PERIODS.map(p => {
-              const active = selected === p;
-              return (
+          <View style={fStyles.sheet}>
+
+            {/* Select Period */}
+            <Text style={fStyles.title}>Select Period</Text>
+            <View style={fStyles.periodGrid}>
+              {PERIODS.map(p => (
                 <TouchableOpacity
                   key={p}
                   onPress={() => handlePeriod(p)}
-                  style={[fStyles.periodBtn, active && fStyles.periodBtnActive]}
+                  style={[fStyles.periodBtn, selected === p && fStyles.periodBtnActive]}
                 >
-                  <Text
-                    style={[
-                      fStyles.periodText,
-                      active && fStyles.periodTextActive,
-                    ]}
-                  >
+                  <Text style={[fStyles.periodText, selected === p && fStyles.periodTextActive]}>
                     {p}
                   </Text>
                 </TouchableOpacity>
-              );
-            })}
-          </View>
+              ))}
+            </View>
 
-          <Text style={fStyles.titleCustomRange}>Custom Range</Text>
-
-          <View style={fStyles.rangeRow}>
-            {(['start', 'end'] as const).map(type => {
-              const val = type === 'start' ? startDate : endDate;
-              const active = calendarFor === type;
-              return (
-                <TouchableOpacity
-                  key={type}
-                  onPress={() => setCalendarFor(active ? null : type)}
-                  style={[fStyles.dateInput, active && fStyles.dateInputActive]}
-                >
-                  <Text
-                    style={[
-                      fStyles.dateInputText,
-                      !val && fStyles.dateInputPlaceholder,
-                    ]}
+            {/* Custom Range */}
+            <Text style={fStyles.titleCustomRange}>Custom Range</Text>
+            <View style={fStyles.rangeRow}>
+              {(['start', 'end'] as const).map(type => {
+                const val   = type === 'start' ? startDate : endDate;
+                const isAct = calendarFor === type;
+                return (
+                  <TouchableOpacity
+                    key={type}
+                    onPress={() => setCalendarFor(isAct ? null : type)}
+                    style={[fStyles.dateInput, isAct && fStyles.dateInputActive]}
                   >
-                    {val ? fmtDate(val) : 'dd/mm/yyyy'}
-                  </Text>
-                  <Text style={fStyles.calendarIcon}>📅</Text>
-                </TouchableOpacity>
-              );
-            })}
+                    <Text
+                      style={[
+                        fStyles.dateInputText,
+                        !val && fStyles.dateInputPlaceholder,
+                      ]}
+                    >
+                      {val ? fmtDate(val) : 'dd/mm/yyyy'}
+                    </Text>
+                    <CalendarEditicon color="#635BFF" size={18} />
+                  </TouchableOpacity>
+                );
+              })}
+            </View>
+
+            {/* Clear / Apply */}
+            <View style={fStyles.actionRow}>
+              <TouchableOpacity onPress={handleClear} style={fStyles.clearBtn}>
+                <Text style={fStyles.clearText}>Clear</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => onApply({ startDate, endDate, period: selected })}
+                style={fStyles.applyBtn}
+              >
+                <Text style={fStyles.applyText}>Apply</Text>
+              </TouchableOpacity>
+            </View>
           </View>
+
 
           {calendarFor && (
-            <View style={fStyles.calendarWrapper}>
-              <View style={fStyles.calendarHeader}>
-                <Text style={fStyles.calendarHeaderText}>
-                  {calendarFor === 'start'
-                    ? 'Select start date'
-                    : 'Select end date'}
-                </Text>
-              </View>
+            <View style={fStyles.calendarCard}>
               <Calendar
                 value={calendarFor === 'start' ? startDate : endDate}
-                onChange={handleCalendarPick}
+                onChange={date => {
+                  if (calendarFor === 'start') {
+                    setStartDate(date);
+                    setEndDate(null);
+                    setCalendarFor('end');
+                  } else {
+                    setEndDate(date);
+                    setCalendarFor(null);
+                  }
+                  setSelected(null);
+                }}
                 minDate={calendarFor === 'end' ? startDate : null}
               />
             </View>
           )}
 
-          <View style={fStyles.actionRow}>
-            <TouchableOpacity onPress={handleClear} style={fStyles.clearBtn}>
-              <Text style={fStyles.clearText}>Clear</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => onApply({ startDate, endDate, period: selected })}
-              style={fStyles.applyBtn}
-            >
-              <Text style={fStyles.applyText}>Apply</Text>
-            </TouchableOpacity>
-          </View>
         </TouchableOpacity>
       </TouchableOpacity>
     </Modal>
   );
 };
 
-// ─── Payment Row Card (list item with expand toggle) ──────────────────────────
-interface PaymentRowCardProps {
-  item: Payment;
-}
+// ─── Status Badge ─────────────────────────────────────────────────────────────
+const StatusBadge = ({ status }: { status: string }) => {
+  const { bg, text } = PAY_BADGE_MAP[status] ?? { bg: '#F5F5F5', text: '#828282' };
+  return (
+    <View style={[localStyles.badge, { backgroundColor: bg }]}>
+      <Text style={[localStyles.badgeText, { color: text }]}>{status}</Text>
+    </View>
+  );
+};
 
-const PaymentRowCard: React.FC<PaymentRowCardProps> = ({ item }) => {
+const localStyles = StyleSheet.create({
+
+  badge: {
+    paddingHorizontal: 9,
+    paddingVertical: 4,
+    borderRadius: 5,
+  },
+  badgeText: { fontSize: 10, fontWeight: '600' },
+
+  // Tab active override colors set inline
+  tabActive: { backgroundColor: '#635BFF', borderColor: '#635BFF' },
+  tabInactive: { backgroundColor: '#FFFFFF', borderColor: '#E5E7EB' },
+  tabTextActive: { color: '#FFFFFF' },
+});
+
+// ─── Payment Row Card ─────────────────────────────────────────────────────────
+const PaymentRowCard: React.FC<{ item: Payment }> = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
-  const cfg = STATUS_CONFIG[item.status] ?? {
-    bg: '#F3F4F6',
-    color: '#6B7280',
-    border: 'transparent',
-  };
 
   return (
     <View style={[cardStyles.card, expanded && cardStyles.cardExpanded]}>
-      {/* ── Row Header ──────────────────────────────────────────────────────── */}
       <TouchableOpacity
         style={cardStyles.row}
         onPress={() => setExpanded(v => !v)}
         activeOpacity={0.85}
       >
-        <Image source={{ uri: item.avatar }} style={cardStyles.avatar} />
-
+        <Image
+          source={{ uri: item.avatar ?? 'https://randomuser.me/api/portraits/women/44.jpg' }}
+          style={cardStyles.avatar}
+        />
         <View style={cardStyles.info}>
+          {/* Top line: name + amount */}
           <View style={cardStyles.topLine}>
-            <Text style={cardStyles.name} numberOfLines={1}>
-              {item.name}
-            </Text>
-            <View>
-              <Text style={cardStyles.amount}>{item.amount}</Text>
-            </View>
+            <Text style={cardStyles.name} numberOfLines={1}>{item.name}</Text>
+            <Text style={cardStyles.amount}>{item.amount}</Text>
           </View>
+          {/* Bottom line: service + status badge */}
           <View style={cardStyles.bottomLine}>
-            <Text style={cardStyles.service} numberOfLines={1}>
-              {item.service}
-            </Text>
-
-            <View
-              style={[
-                cardStyles.badge,
-                { backgroundColor: cfg.bg, borderColor: cfg.border },
-              ]}
-            >
-              <Text style={[cardStyles.badgeText, { color: cfg.color }]}>
-                {item.status}
-              </Text>
-            </View>
+            <Text style={cardStyles.service} numberOfLines={1}>{item.service}</Text>
+            <StatusBadge status={item.status} />
           </View>
         </View>
-
         <TouchableOpacity
           onPress={() => setExpanded(v => !v)}
           hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
           style={cardStyles.chevronWrap}
         >
-          {expanded ? (
-            <ChevronUp width={20} height={20} color="#525252" />
-          ) : (
-            <ChevronDown width={20} height={20} color="#525252" />
-          )}
+          {expanded
+            ? <ChevronUp   width={20} height={20} color="#9CA3AF" />
+            : <ChevronDown width={20} height={20} color="#9CA3AF" />
+          }
         </TouchableOpacity>
       </TouchableOpacity>
 
-      {/* ── Expanded Panel — shared PaymentCard component ───────────────────── */}
+      {/* Expanded panel — shared PaymentCard */}
       {expanded && <PaymentCard item={item} />}
     </View>
   );
 };
 
-
+// ─── Tab Bar ─────────────────────────────────────────────────────────────────
+const TabBar: React.FC<{
+  activeTab: string;
+  onSelect: (label: string) => void;
+  counts: Record<string, number>;
+}> = ({ activeTab, onSelect, counts }) => (
+  <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={mainStyles.tabsContent}>
+    {PAY_TABS.map(tab => {
+      const isActive = activeTab === tab.label;
+      const count    = counts[tab.label] ?? 0;
+      const countTextColor = isActive ? '#FFFFFF' : tab.activeColor;
+      const pillBgColor = isActive ? 'rgba(255,255,255,0.28)' : tab.activeColor + '22';
+      return (
+        <TouchableOpacity
+          key={tab.label}
+          onPress={() => onSelect(tab.label)}
+          activeOpacity={0.75}
+          style={[
+            mainStyles.tab,
+            isActive
+              ? { backgroundColor: tab.activeColor, borderColor: tab.activeColor }
+              : localStyles.tabInactive,
+          ]}
+        >
+          <View style={mainStyles.tabInner}>
+            <Text style={[mainStyles.tabText, isActive && localStyles.tabTextActive]}>
+              {tab.label}
+            </Text>
+            {/* Count pill — only for non-All tabs */}
+            {tab.status !== null && count > 0 && (
+              <View
+                style={[
+                  mainStyles.tabCountPill,
+                  { backgroundColor: pillBgColor },
+                ]}
+              >
+                <Text style={[mainStyles.tabCountText, { color: countTextColor }]}>
+                  {count}
+                </Text>
+              </View>
+            )}
+          </View>
+        </TouchableOpacity>
+      );
+    })}
+  </ScrollView>
+);
 
 // ─── AllPayments Screen ───────────────────────────────────────────────────────
 const AllPayments: React.FC = () => {
-  const [search, setSearch] = useState('');
-  const [activeTab, setActiveTab] = useState('All');
+  const [search, setSearch]         = useState('');
+  const [activeTab, setActiveTab]   = useState('All');
   const [showFilter, setShowFilter] = useState(false);
   const [dateFilter, setDateFilter] = useState<DateFilter | null>(null);
-  const [dateChip, setDateChip] = useState('Feb 27');
+  const [dateChip, setDateChip]     = useState('');
 
-  const filtered = useMemo<Payment[]>(() => {
-    return ALL_PAYMENTS.filter(p => {
-      // Search filter
-      if (
-        search &&
-        !p.name.toLowerCase().includes(search.toLowerCase()) &&
-        !p.service.toLowerCase().includes(search.toLowerCase())
-      )
-        return false;
+  const activeStatus = useMemo(
+    () => PAY_TABS.find(t => t.label === activeTab)?.status ?? null,
+    [activeTab],
+  );
 
-      // Tab filter
-      if (activeTab !== 'All' && p.status !== activeTab) return false;
-
-      // Date filter — date is optional in Payment type
-      if (dateFilter?.startDate && dateFilter?.endDate && p.date) {
-        const d = parseDate(p.date);
-        const s = new Date(dateFilter.startDate);
-        s.setHours(0, 0, 0, 0);
-        const e = new Date(dateFilter.endDate);
-        e.setHours(23, 59, 59, 999);
-        if (d < s || d > e) return false;
-      }
-
-      return true;
+  // Count per tab — based on full data (not filtered)
+  const tabCounts = useMemo(() => {
+    const r: Record<string, number> = {};
+    PAY_TABS.forEach(tab => {
+      r[tab.label] = tab.status
+        ? ALL_PAYMENTS.filter(p => p.status === tab.status).length
+        : ALL_PAYMENTS.length;
     });
-  }, [search, activeTab, dateFilter]);
+    return r;
+  }, []);
+
+  const filtered = useMemo<Payment[]>(
+    () =>
+      ALL_PAYMENTS.filter(p => {
+        if (
+          search &&
+          !p.name.toLowerCase().includes(search.toLowerCase()) &&
+          !p.service.toLowerCase().includes(search.toLowerCase())
+        ) return false;
+        if (activeStatus && p.status !== activeStatus) return false;
+        if (dateFilter?.startDate && dateFilter?.endDate && p.date) {
+          const d = parseDate(p.date);
+          const s = new Date(dateFilter.startDate); s.setHours(0,0,0,0);
+          const e = new Date(dateFilter.endDate);   e.setHours(23,59,59,999);
+          if (d < s || d > e) return false;
+        }
+        return true;
+      }),
+    [search, activeStatus, dateFilter],
+  );
 
   const sections = useMemo<SectionData[]>(() => {
     const map: Record<string, Payment[]> = {};
     filtered.forEach(p => {
-      const key = p.date ?? 'Feb 27,2026';
+      const key = p.date ?? 'Unknown';
       if (!map[key]) map[key] = [];
       map[key].push(p);
     });
@@ -483,14 +478,8 @@ const AllPayments: React.FC = () => {
     setDateFilter(f);
     setShowFilter(false);
     if (f.period) setDateChip(f.period);
-    else if (f.startDate && f.endDate)
-      setDateChip(`${fmtDate(f.startDate)} - ${fmtDate(f.endDate)}`);
-    else setDateChip('Feb 27');
-  }, []);
-
-  const handleClearDate = useCallback(() => {
-    setDateFilter(null);
-    setDateChip('Feb 27');
+    else if (f.startDate && f.endDate) setDateChip(`${fmtDate(f.startDate)} - ${fmtDate(f.endDate)}`);
+    else setDateChip('');
   }, []);
 
   const renderItem = useCallback(
@@ -500,17 +489,19 @@ const AllPayments: React.FC = () => {
 
   const renderSectionHeader = useCallback(
     ({ section }: { section: SectionData }) => (
-      <Text style={mainStyles.sectionHeader}>{section.title}</Text>
+      <Text style={mainStyles.sectionHeader}>{fmtSectionDate(section.title)}</Text>
     ),
     [],
   );
 
   return (
     <View style={mainStyles.screen}>
-      <StatusBar barStyle="dark-content" backgroundColor="#fff" />
+      <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
       {/* ── Header ──────────────────────────────────────────────────────────── */}
       <View style={mainStyles.header}>
+
+        {/* Title row */}
         <View style={mainStyles.titleRow}>
           <View style={mainStyles.titleLeft}>
             <TouchableOpacity>
@@ -523,81 +514,51 @@ const AllPayments: React.FC = () => {
           </TouchableOpacity>
         </View>
 
+        {/* Date chip — calendar icon + label + ▾ */}
         <View style={mainStyles.chipRow}>
-          <TouchableOpacity
-            onPress={() => setShowFilter(true)}
-            style={mainStyles.chip}
-          >
-            <Text style={mainStyles.chipIcon}>📅</Text>
-            <Text style={mainStyles.chipText}>{dateChip}</Text>
-            {dateFilter && (
-              <TouchableOpacity
-                onPress={handleClearDate}
-                hitSlop={{ top: 6, bottom: 6, left: 6, right: 6 }}
-              >
-                <Text style={mainStyles.chipClose}>✕</Text>
-              </TouchableOpacity>
+          <TouchableOpacity onPress={() => setShowFilter(true)} style={mainStyles.chip}>
+            <Calendaricon size={20} />
+            {dateChip ? (
+              <Text style={mainStyles.chipText}>{dateChip}</Text>
+            ) : (
+              <Text style={mainStyles.chipText}>Feb 01-Feb 28</Text>
             )}
+           <ChevronDown size={20}  color="#635BFF" />
+
+
           </TouchableOpacity>
+
         </View>
 
+        {/* Search bar */}
         <View style={mainStyles.searchWrapper}>
-          <Text style={mainStyles.searchIcon}>🔍</Text>
+          <Search size={18} color="#9CA3AF" />
           <TextInput
             style={mainStyles.searchInput}
-            placeholder="Search..."
+            placeholder="Search"
             placeholderTextColor="#9CA3AF"
             value={search}
             onChangeText={setSearch}
           />
         </View>
 
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={mainStyles.tabsContent}
-        >
-          {FILTER_TABS.map(tab => {
-            const active = activeTab === tab;
-            return (
-              <TouchableOpacity
-                key={tab}
-                onPress={() => setActiveTab(PAY_BADGE_MAP[tab] ? tab : 'All')}
-                style={[
-                  mainStyles.tab,
-                  active && PAY_BADGE_MAP[tab] ? mainStyles.tabActive : mainStyles.tab,
-                ]}
-              >
-                <Text
-                  style={[
-                    mainStyles.tabText,
-                    active && mainStyles.tabTextActive,
-                  ]}
-                >
-                  {tab}
-                </Text>
-              </TouchableOpacity>
-            );
-          })}
-        </ScrollView>
+        {/* Tab bar */}
+        <TabBar activeTab={activeTab} onSelect={setActiveTab} counts={tabCounts} />
       </View>
 
-      {/* ── List ────────────────────────────────────────────────────────────── */}
+      {/* ── Section List ────────────────────────────────────────────────────── */}
       <SectionList<Payment, SectionData>
         sections={sections}
         keyExtractor={item => item.id}
         renderItem={renderItem}
-        renderSectionHeader={renderSectionHeader} 
+        renderSectionHeader={renderSectionHeader}
         contentContainerStyle={mainStyles.listContent}
         stickySectionHeadersEnabled={false}
+
+        
       />
 
-      {/* ── Filter Modal ─────────────────────────────────────────────────────── */}
-      <FilterModal
-        visible={showFilter}
-        onClose={() => setShowFilter(false)}
-        onApply={handleApplyFilter}
-      />
+      <FilterModal visible={showFilter} onClose={() => setShowFilter(false)} onApply={handleApplyFilter} />
     </View>
   );
 };

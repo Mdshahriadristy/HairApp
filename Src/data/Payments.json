@@ -11,7 +11,8 @@
     "phone": "+39 348 1234567",
     "paymentMethod": "Visa",
     "cardLast4": "2742",
-    "notes": "Golden balayage. Sulfate allergy noted. Layered mid-length cut."
+    "notes": "Golden balayage. Sulfate allergy noted. Layered mid-length cut.",
+    "date": "2026-03-31"
   },
   {
     "id": "pay-2",
@@ -25,7 +26,8 @@
     "phone": "+39 348 1234567",
     "paymentMethod": "Visa",
     "cardLast4": "2742",
-    "notes": "Chocolate brown. Voluminous blowout. Payment link was never opened."
+    "notes": "Chocolate brown. Voluminous blowout. Payment link was never opened.",
+    "date": "2026-03-31"
   },
   {
     "id": "pay-3",
@@ -39,7 +41,8 @@
     "phone": "+39 348 1234567",
     "paymentMethod": "Visa",
     "cardLast4": "2743",
-    "notes": "Golden balayage. Sulfate allergy noted. Layered mid-length cut."
+    "notes": "Golden balayage. Sulfate allergy noted. Layered mid-length cut.",
+    "date": "2026-03-30"
   },
   {
     "id": "pay-4",
@@ -53,7 +56,8 @@
     "phone": "+39 347 9876543",
     "paymentMethod": "Visa",
     "cardLast4": "1890",
-    "notes": "Keratin smoothing treatment. Client prefers low heat."
+    "notes": "Keratin smoothing treatment. Client prefers low heat.",
+    "date": "2026-03-30"
   },
   {
     "id": "pay-5",
@@ -67,7 +71,8 @@
     "phone": "+39 346 5554433",
     "paymentMethod": "Mastercard",
     "cardLast4": "3310",
-    "notes": "Balayage highlights. Prefers natural, sun-kissed look."
+    "notes": "Balayage highlights. Prefers natural, sun-kissed look.",
+    "date": "2026-03-28"
   },
   {
     "id": "pay-6",
@@ -81,7 +86,8 @@
     "phone": "+39 345 6789012",
     "paymentMethod": "Visa",
     "cardLast4": "4521",
-    "notes": "Frizz control treatment. Client has fine hair."
+    "notes": "Frizz control treatment. Client has fine hair.",
+    "date": "2026-03-25"
   },
   {
     "id": "pay-7",
@@ -95,7 +101,8 @@
     "phone": "+39 344 5678901",
     "paymentMethod": "Mastercard",
     "cardLast4": "8823",
-    "notes": "Dark to blonde ombre. Payment link sent twice but not opened."
+    "notes": "Dark to blonde ombre. Payment link sent twice but not opened.",
+    "date": "2026-03-20"
   },
   {
     "id": "pay-8",
@@ -109,7 +116,7 @@
     "phone": "+39 343 4567890",
     "paymentMethod": "Visa",
     "cardLast4": "1134",
-    "notes": "Dark brown root touch-up. Sensitive scalp."
+    "notes": "Dark brown root touch-up. Sensitive scalp.",
+    "date": "2026-03-10"
   }
-
 ]
