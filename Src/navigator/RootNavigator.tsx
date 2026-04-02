@@ -19,8 +19,11 @@ import BusniessSetup3 from '../Screen/BusniessSetup3/BusniessSetup3';
 import PurchasePageScreen from '../Screen/Purches/PurchespageScreen';
 import PurchasePage1Screen from '../Screen/Purches1/Purchespage1Screen';
 import PurchasePage2Screen from '../Screen/Purches2/Purchespage2Screen';
-import BottonTabs from './Buttontab'; 
+import BottonTabs from './Buttontab';
 import HomeScreenAll from '../Screen/HomeScreenAppoinments/HomeScreenAll/HomeScreenAll';
+import AllPayments from '../Screen/HomeScreenAppoinments/All Payments/Allpayments';
+import AllAppointment from '../Screen/HomeScreenAppoinments/All Apointments/AllAppointment';
+
 
 export type RootStackParamList = {
   Splash: undefined;
@@ -41,8 +44,10 @@ export type RootStackParamList = {
   Purches: undefined;
   Purches1: undefined;
   Purches2: undefined;
-  ButtonTabs: undefined; 
+  ButtonTabs: undefined;
   HomeScreenAppoinments: undefined;
+  AllPayments: undefined;
+  AllAppointments: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -63,7 +68,10 @@ const RootNavigator: React.FC = () => {
         <Stack.Screen name="ConfirmedPassword" component={ConfirmPass} />
         <Stack.Screen name="CreateAccount" component={CreateAccount} />
         <Stack.Screen name="Verification2" component={Verification2} />
-        <Stack.Screen name="VerificationComplete" component={VerificationComplete} />
+        <Stack.Screen
+          name="VerificationComplete"
+          component={VerificationComplete}
+        />
         <Stack.Screen name="ProfileSetUp" component={ProfileSetUp1Screen} />
         <Stack.Screen name="BusniessSetup" component={BusniessSetup} />
         <Stack.Screen name="BusniessSetup2" component={BusniessSetup2} />
@@ -73,6 +81,8 @@ const RootNavigator: React.FC = () => {
         <Stack.Screen name="Purches2" component={PurchasePage2Screen} />
         <Stack.Screen name="ButtonTabs" component={BottonTabs} />
         <Stack.Screen name="HomeScreenAppoinments" component={HomeScreenAll} />
+        <Stack.Screen name="AllPayments" component={AllPayments} />
+        <Stack.Screen name="AllAppointments" component={AllAppointment} />
       </Stack.Navigator>
     </NavigationContainer>
   );

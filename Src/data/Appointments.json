@@ -5,6 +5,7 @@
     "service": "Full Balayage & Cut",
     "time": "12:00 AM – 12:15 AM",
     "status": "Booked",
+    "date": "2026-04-03",
     "avatar": "https://randomuser.me/api/portraits/women/44.jpg"
   },
   {
@@ -13,6 +14,7 @@
     "service": "Hair Color & Style",
     "time": "1:00 PM – 1:45 PM",
     "status": "Confirmed",
+    "date": "2026-04-03",
     "avatar": "https://randomuser.me/api/portraits/women/32.jpg"
   },
   {
@@ -21,6 +23,7 @@
     "service": "Keratin Treatment",
     "time": "3:00 PM – 4:00 PM",
     "status": "Confirmed",
+    "date": "2026-04-03",
     "avatar": "https://randomuser.me/api/portraits/women/56.jpg"
   },
   {
@@ -29,6 +32,7 @@
     "service": "Blowout & Trim",
     "time": "5:00 PM – 5:30 PM",
     "status": "Arrived",
+    "date": "2026-04-03",
     "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
   },
   {
@@ -37,107 +41,283 @@
     "service": "Highlights & Toner",
     "time": "6:00 PM – 7:00 PM",
     "status": "Booked",
+    "date": "2026-04-03",
     "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
   },
+
   {
     "id": "6",
     "name": "Ava Martinez",
     "service": "Deep Conditioning",
     "time": "7:30 PM – 8:00 PM",
     "status": "Arrived",
+    "date": "2026-04-03",
     "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
   },
-    {
+  {
     "id": "7",
     "name": "Sophia Davis",
     "service": "Highlights & Toner",
     "time": "6:00 PM – 7:00 PM",
     "status": "Booked",
+    "date": "2026-04-03",
     "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
   },
-    {
-    "id": "=8",
-    "name": "Sophia Davis",
-    "service": "Highlights & Toner",
-    "time": "6:00 PM – 7:00 PM",
+  {
+    "id": "8",
+    "name": "Liam Carter",
+    "service": "Men Haircut",
+    "time": "2:00 PM – 2:30 PM",
     "status": "Booked",
-    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/32.jpg"
   },
-    {
+  {
     "id": "9",
-    "name": "Sophia Davis",
-    "service": "Highlights & Toner",
-    "time": "6:00 PM – 7:00 PM",
+    "name": "Noah Smith",
+    "service": "Beard Trim",
+    "time": "3:00 PM – 3:20 PM",
     "status": "Booked",
-    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/45.jpg"
   },
-      {
+  {
     "id": "10",
-    "name": "Sophia Davis",
-    "service": "Highlights & Toner",
-    "time": "6:00 PM – 7:00 PM",
-    "status": "Started",
-    "avatar": "https://randomuser.me/api/portraits/women/21.jpg"
-  },
-
-    {
-    "id": "11",
-    "name": "Ava Martinez",
-    "service": "Deep Conditioning",
-    "time": "7:30 PM – 8:00 PM",
-    "status": "Started",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
-  },
-    {
-    "id": "12",
-    "name": "Ava Martinez",
-    "service": "Deep Conditioning",
-    "time": "7:30 PM – 8:00 PM",
-    "status": "Started",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
-  },
-      {
-    "id": "13",
-    "name": "Ava Martinez",
-    "service": "Deep Conditioning",
-    "time": "7:30 PM – 8:00 PM",
-    "status": "Started",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
-  },
-      {
-    "id": "14",
-    "name": "Ava Martinez",
-    "service": "Deep Conditioning",
-    "time": "7:30 PM – 8:00 PM",
-    "status": "Started",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+    "name": "Mia Clark",
+    "service": "Hair Wash & Style",
+    "time": "4:00 PM – 4:30 PM",
+    "status": "Booked",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/12.jpg"
   },
 
   {
+    "id": "11",
+    "name": "Ethan Wright",
+    "service": "Haircut",
+    "time": "1:00 PM – 1:30 PM",
+    "status": "Confirmed",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/21.jpg"
+  },
+  {
+    "id": "12",
+    "name": "Isabella Hall",
+    "service": "Coloring",
+    "time": "2:00 PM – 2:45 PM",
+    "status": "Confirmed",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/22.jpg"
+  },
+  {
+    "id": "13",
+    "name": "James Allen",
+    "service": "Hair Spa",
+    "time": "3:30 PM – 4:00 PM",
+    "status": "Confirmed",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/10.jpg"
+  },
+  {
+    "id": "14",
+    "name": "Charlotte Young",
+    "service": "Straightening",
+    "time": "5:00 PM – 6:00 PM",
+    "status": "Confirmed",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/45.jpg"
+  },
+  {
     "id": "15",
-    "name": "Ava Martinez",
-    "service": "Deep Conditioning",
-    "time": "7:30 PM – 8:00 PM",
-    "status": "Cancelled",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+    "name": "Benjamin King",
+    "service": "Trim",
+    "time": "6:30 PM – 7:00 PM",
+    "status": "Confirmed",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/50.jpg"
   },
-    {
+
+  {
     "id": "16",
-    "name": "Ava Martinez",
-    "service": "Deep Conditioning",
-    "time": "7:30 PM – 8:00 PM",
-    "status": "Complete",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+    "name": "Amelia Scott",
+    "service": "Keratin Treatment",
+    "time": "7:00 PM – 8:00 PM",
+    "status": "Arrived",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/60.jpg"
   },
-    {
+  {
     "id": "17",
-    "name": "Ava Martinez",
-    "service": "Deep Conditioning",
-    "time": "7:30 PM – 8:00 PM",
+    "name": "Henry Adams",
+    "service": "Beard Styling",
+    "time": "1:30 PM – 2:00 PM",
+    "status": "Arrived",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/60.jpg"
+  },
+  {
+    "id": "18",
+    "name": "Evelyn Baker",
+    "service": "Hair Treatment",
+    "time": "2:30 PM – 3:00 PM",
+    "status": "Arrived",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/61.jpg"
+  },
+  {
+    "id": "19",
+    "name": "Alexander Nelson",
+    "service": "Fade Cut",
+    "time": "4:00 PM – 4:30 PM",
+    "status": "Arrived",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/61.jpg"
+  },
+  {
+    "id": "20",
+    "name": "Harper Carter",
+    "service": "Blow Dry",
+    "time": "5:30 PM – 6:00 PM",
+    "status": "Arrived",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/62.jpg"
+  },
+
+  {
+    "id": "21",
+    "name": "Lucas Mitchell",
+    "service": "Haircut",
+    "time": "1:00 PM – 1:30 PM",
+    "status": "Started",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/62.jpg"
+  },
+  {
+    "id": "22",
+    "name": "Ella Perez",
+    "service": "Hair Coloring",
+    "time": "2:00 PM – 2:45 PM",
+    "status": "Started",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/63.jpg"
+  },
+  {
+    "id": "23",
+    "name": "Daniel Roberts",
+    "service": "Hair Spa",
+    "time": "3:00 PM – 3:45 PM",
+    "status": "Started",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/63.jpg"
+  },
+  {
+    "id": "24",
+    "name": "Grace Turner",
+    "service": "Keratin",
+    "time": "4:00 PM – 5:00 PM",
+    "status": "Started",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/64.jpg"
+  },
+  {
+    "id": "25",
+    "name": "Matthew Phillips",
+    "service": "Trim",
+    "time": "5:00 PM – 5:30 PM",
+    "status": "Started",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/64.jpg"
+  },
+
+  {
+    "id": "26",
+    "name": "Chloe Campbell",
+    "service": "Blowout",
+    "time": "6:00 PM – 6:30 PM",
+    "status": "Cancelled",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/65.jpg"
+  },
+  {
+    "id": "27",
+    "name": "Andrew Parker",
+    "service": "Haircut",
+    "time": "1:30 PM – 2:00 PM",
+    "status": "Cancelled",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/65.jpg"
+  },
+  {
+    "id": "28",
+    "name": "Victoria Evans",
+    "service": "Color",
+    "time": "2:30 PM – 3:15 PM",
+    "status": "Cancelled",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/66.jpg"
+  },
+  {
+    "id": "29",
+    "name": "Samuel Edwards",
+    "service": "Beard Trim",
+    "time": "3:30 PM – 4:00 PM",
+    "status": "Cancelled",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/66.jpg"
+  },
+  {
+    "id": "30",
+    "name": "Lily Collins",
+    "service": "Treatment",
+    "time": "4:30 PM – 5:00 PM",
+    "status": "Cancelled",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/67.jpg"
+  },
+
+  {
+    "id": "31",
+    "name": "David Stewart",
+    "service": "Haircut",
+    "time": "10:00 AM – 10:30 AM",
     "status": "Complete",
-    "avatar": "https://randomuser.me/api/portraits/women/78.jpg"
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/67.jpg"
+  },
+  {
+    "id": "32",
+    "name": "Sofia Rivera",
+    "service": "Hair Color",
+    "time": "11:00 AM – 11:45 AM",
+    "status": "Complete",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/68.jpg"
+  },
+  {
+    "id": "33",
+    "name": "Joseph Morris",
+    "service": "Styling",
+    "time": "12:00 PM – 12:30 PM",
+    "status": "Complete",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/68.jpg"
+  },
+  {
+    "id": "34",
+    "name": "Zoe Rogers",
+    "service": "Treatment",
+    "time": "1:00 PM – 1:30 PM",
+    "status": "Complete",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/women/69.jpg"
+  },
+  {
+    "id": "35",
+    "name": "Christopher Reed",
+    "service": "Trim",
+    "time": "2:00 PM – 2:30 PM",
+    "status": "Complete",
+    "date": "2026-04-03",
+    "avatar": "https://randomuser.me/api/portraits/men/69.jpg"
   }
-
-
-
 ]

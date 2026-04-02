@@ -6,6 +6,7 @@ export interface Appointment {
   service: string;
   time: string;
   status: string;
+  date?: string;
 }
 
 // ─── Payment ───────────────────────────────────────────────────────────────────

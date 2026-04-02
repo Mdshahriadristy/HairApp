@@ -86,8 +86,6 @@ export const fStyles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.15,
     shadowRadius: 8,
-
-
   },
   title: {
     fontSize: 16,
@@ -202,7 +200,7 @@ export const fStyles = StyleSheet.create({
   },
 });
 
-// ─── Payment Card Styles ──────────────────────────────────────────────────────
+// ─── Appointment Card Styles ──────────────────────────────────────────────────
 export const cardStyles = StyleSheet.create({
   card: {
     backgroundColor: '#FFFFFF',
@@ -246,11 +244,13 @@ export const cardStyles = StyleSheet.create({
     flex: 1,
     overflow: 'hidden',
   },
-  amount: {
-    fontSize: 15,
+  time: {
+    fontSize: 10,
     fontWeight: '700',
-    color: '#171717',
+    color: '#525252',
     marginLeft: 8,
+    fontFamily:'Manrope',
+
   },
   bottomLine: {
     flexDirection: 'row',
@@ -436,7 +436,6 @@ export const mainStyles = StyleSheet.create({
   header: {
     backgroundColor: '#FFFFFF',
     paddingHorizontal: 16,
-
     paddingBottom: 10,
   },
 
@@ -453,7 +452,6 @@ export const mainStyles = StyleSheet.create({
     marginTop: 38,
     justifyContent: 'center',
   },
-
   Title: {
     marginBottom: 7,
   },

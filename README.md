@@ -10,9 +10,104 @@ First, you will need to run **Metro**, the JavaScript build tool for React Nativ
 
 To start the Metro dev server, run the following command from the root of your React Native project:
 
-```sh
+````sh
 # Using npm
 npm start
+```sh
+# Using pnpm
+pnpm start
+````
+
+Then replace the entire document with a professional structure:
+
+````markdown
+# HairApp
+
+A React Native application for [describe the purpose].
+
+## Prerequisites
+
+- Node.js 16+ or pnpm installed
+- Xcode 14+ (iOS development)
+- Android Studio (Android development)
+- CocoaPods (iOS native dependencies)
+
+## Quick Start
+
+1. Install dependencies:
+
+```sh
+npm install
+# or
+pnpm install
+```
+````
+
+2. Start Metro bundler:
+
+```sh
+npm start
+```
+
+3. In another terminal, run the app:
+
+```sh
+# Android
+npm run android
+
+# iOS
+npm run ios
+```
+
+## Development
+
+### Project Structure
+
+- `/src` - Source code
+- `/android` - Android native code
+- `/ios` - iOS native code
+
+### Code Style & Linting
+
+```sh
+npm run lint
+npm run format
+```
+
+### Testing
+
+```sh
+npm test
+```
+
+## Building for Production
+
+### Android
+
+```sh
+npm run build:android
+```
+
+### iOS
+
+```sh
+npm run build:ios
+```
+
+## Troubleshooting
+
+Refer to [React Native Troubleshooting Guide](https://reactnative.dev/docs/troubleshooting).
+
+## Resources
+
+- [React Native Docs](https://reactnative.dev)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+
+## License
+
+MIT
+
+```
 
 # OR using Yarn
 yarn start

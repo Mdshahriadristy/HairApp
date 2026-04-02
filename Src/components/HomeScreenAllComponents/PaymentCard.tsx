@@ -8,7 +8,7 @@ import {
   CircleAlert,
   CircleAlertIcon,
 } from 'lucide-react-native';
-import styles from '../../Screen/HomeScreenAppoinments/HomeScreenAll/Style'; // path adjust করো
+import styles from '../../Screen/HomeScreenAppoinments/HomeScreenAll/Style'; 
 import CheckCircleIcon from '../svg/CheckCircleIcon';
 import DownloadTrayIcon from '../svg/DownloadTrayIcon';
 import DocumentIcon from '../svg/DocumentIcon';
@@ -91,27 +91,30 @@ const PayBookingSteps = ({ status }: { status: string }) => {
     <View style={styles.payStepsRow}>
       <View style={[styles.payConnector, styles.payConnectorLeft]} />
       <View style={[styles.payConnector, styles.payConnectorRight]} />
-      {steps.map((step, i) => (
-        <View key={i} style={styles.payStepItem}>
-          <View style={[styles.payCircle, { backgroundColor: step.bg }]}>
-            <PayStepIcon type={step.iconType} bg={step.bg} />
-          </View>
-          <View
-            style={[styles.payLabelBadge, { backgroundColor: step.bg + '22' }]}
-          >
-            <Text
-              style={[
-                styles.payLabelText,
-                styles.payLabelTextBase,
-                { color: isGrayBg(step.bg) ? '#9E9E9E' : step.bg },
-              ]}
+      {steps.map((step, i) => {
+        const labelColor = isGrayBg(step.bg) ? '#9E9E9E' : step.bg;
+        return (
+          <View key={i} style={styles.payStepItem}>
+            <View style={[styles.payCircle, { backgroundColor: step.bg }]}>
+              <PayStepIcon type={step.iconType} bg={step.bg} />
+            </View>
+            <View
+              style={[styles.payLabelBadge, { backgroundColor: step.bg + '22' }]}
             >
-              {step.label}
-            </Text>
+              <Text
+                style={[
+                  styles.payLabelText,
+                  styles.payLabelTextBase,
+                  { color: labelColor },
+                ]}
+              >0
+                {step.label}
+              </Text>
+            </View>
+            <Text style={styles.payStepDate}>{step.date}</Text>
           </View>
-          <Text style={styles.payStepDate}>{step.date}</Text>
-        </View>
-      ))}
+        );
+      })}
     </View>
   );
 };

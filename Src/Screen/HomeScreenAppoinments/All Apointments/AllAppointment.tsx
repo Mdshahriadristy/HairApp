@@ -20,11 +20,11 @@ import {
 } from 'lucide-react-native';
 import { calStyles, fStyles, cardStyles, mainStyles } from './Style';
 
-import paymentsJson from '../../../data/Payments.json';
+import appointmentsJson from '../../../data/Appointments.json';
 import DownUpicon from '../../../components/svg/DownUpicon';
 import Calendaricon from '../../../components/svg/Calendericon';
-import PaymentCard from '../../../components/HomeScreenAllComponents/PaymentCard';
-import type { Payment } from '../../../types';
+import AppointmentCard from '../../../components/HomeScreenAllComponents/AppointmentCard';
+import type { Appointment } from '../../../types';
 import CalendarEditicon from '../../../components/svg/CalenderEditicon';
 import { useNavigation } from '@react-navigation/native';
 
@@ -36,34 +36,32 @@ interface DateFilter {
 }
 interface SectionData {
   title: string;
-  data: Payment[];
+  data: Appointment[];
 }
 
-const ALL_PAYMENTS: Payment[] = paymentsJson as unknown as Payment[];
+const ALL_APPOINTMENTS: Appointment[] =
+  appointmentsJson as unknown as Appointment[];
 
 // ─── Tab Config ───────────────────────────────────────────────────────────────
 type TabCfg = { label: string; status: string | null; activeColor: string };
 
-const PAY_TABS: TabCfg[] = [
+const APPT_TABS: TabCfg[] = [
   { label: 'All', status: null, activeColor: '#635BFF' },
-  {
-    label: 'Paid · to Confirm',
-    status: 'Paid · to Confirm',
-    activeColor: '#F2994A',
-  },
-  { label: 'Expired', status: 'Expired', activeColor: '#FF317D' },
-  { label: 'Confirmed', status: 'Confirmed', activeColor: '#27AE60' },
+  { label: 'Booked', status: 'Booked', activeColor: '#5B67EA' },
+  { label: 'Confirmed', status: 'Confirmed', activeColor: '#16CDC7' },
+  { label: 'Arrived', status: 'Arrived', activeColor: '#DCBD55' },
   { label: 'Started', status: 'Started', activeColor: '#00BEB8' },
+  { label: 'Complete', status: 'Complete', activeColor: '#36C76C' },
+  { label: 'Cancelled', status: 'Cancelled', activeColor: '#FF317D' },
 ];
 
 // ─── Badge Map ────────────────────────────────────────────────────────────────
-const PAY_BADGE_MAP: Record<string, { bg: string; text: string }> = {
-  'Paid · to Confirm': { bg: '#FFF8E7', text: '#F2994A' },
-  'Paid . to Confirm': { bg: '#FFF8E7', text: '#F2994A' },
-  'Paid · toConfirm': { bg: '#FFF8E7', text: '#F2994A' },
-  Expired: { bg: '#FFECF0', text: '#FF317D' },
-  Confirmed: { bg: '#E7FFEC', text: '#27AE60' },
+const APPT_BADGE_MAP: Record<string, { bg: string; text: string }> = {
+  Booked: { bg: '#EEF0FF', text: '#5B67EA' },
+  Confirmed: { bg: '#E0FFFE', text: '#16CDC7' },
+  Arrived: { bg: '#FFFDE5', text: '#DCBD55' },
   Started: { bg: '#EAFFFF', text: '#00BEB8' },
+  Complete: { bg: '#ECFFF1', text: '#36C76C' },
   Cancelled: { bg: '#FEF0F0', text: '#FF317D' },
 };
 
@@ -383,7 +381,7 @@ const FilterModal: React.FC<{
 
 // ─── Status Badge ─────────────────────────────────────────────────────────────
 const StatusBadge = ({ status }: { status: string }) => {
-  const { bg, text } = PAY_BADGE_MAP[status] ?? {
+  const { bg, text } = APPT_BADGE_MAP[status] ?? {
     bg: '#F5F5F5',
     text: '#828282',
   };
@@ -414,8 +412,8 @@ const localStyles = StyleSheet.create({
   },
 });
 
-// ─── Payment Row Card ─────────────────────────────────────────────────────────
-const PaymentRowCard: React.FC<{ item: Payment }> = ({ item }) => {
+// ─── Appointment Row Card ─────────────────────────────────────────────────────
+const AppointmentRowCard: React.FC<{ item: Appointment }> = ({ item }) => {
   const [expanded, setExpanded] = useState(false);
 
   return (
@@ -437,13 +435,13 @@ const PaymentRowCard: React.FC<{ item: Payment }> = ({ item }) => {
             <Text style={cardStyles.name} numberOfLines={1}>
               {item.name}
             </Text>
-            <Text style={cardStyles.amount}>{item.amount}</Text>
+            <StatusBadge status={item.status} />
           </View>
           <View style={cardStyles.bottomLine}>
             <Text style={cardStyles.service} numberOfLines={1}>
               {item.service}
             </Text>
-            <StatusBadge status={item.status} />
+            <Text style={cardStyles.time}>{item.time}</Text>
           </View>
         </View>
         <TouchableOpacity
@@ -459,7 +457,7 @@ const PaymentRowCard: React.FC<{ item: Payment }> = ({ item }) => {
         </TouchableOpacity>
       </TouchableOpacity>
 
-      {expanded && <PaymentCard item={item} />}
+      {expanded && <AppointmentCard item={item} />}
     </View>
   );
 };
@@ -472,7 +470,7 @@ const TabBar: React.FC<{
 }> = ({ activeTab, onSelect, counts }) => (
   <FlatList
     horizontal
-    data={PAY_TABS}
+    data={APPT_TABS}
     keyExtractor={item => item.label}
     showsHorizontalScrollIndicator={false}
     contentContainerStyle={mainStyles.tabsContent}
@@ -527,8 +525,8 @@ const TabBar: React.FC<{
   />
 );
 
-// ─── AllPayments Screen ───────────────────────────────────────────────────────
-const AllPayments: React.FC = () => {
+// ─── AllAppointments Screen ───────────────────────────────────────────────────
+const AllAppointment: React.FC = () => {
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState('All');
   const [showFilter, setShowFilter] = useState(false);
@@ -537,32 +535,32 @@ const AllPayments: React.FC = () => {
   const navigation = useNavigation();
 
   const activeStatus = useMemo(
-    () => PAY_TABS.find(t => t.label === activeTab)?.status ?? null,
+    () => APPT_TABS.find(t => t.label === activeTab)?.status ?? null,
     [activeTab],
   );
 
   const tabCounts = useMemo(() => {
     const r: Record<string, number> = {};
-    PAY_TABS.forEach(tab => {
+    APPT_TABS.forEach(tab => {
       r[tab.label] = tab.status
-        ? ALL_PAYMENTS.filter(p => p.status === tab.status).length
-        : ALL_PAYMENTS.length;
+        ? ALL_APPOINTMENTS.filter(a => a.status === tab.status).length
+        : ALL_APPOINTMENTS.length;
     });
     return r;
   }, []);
 
-  const filtered = useMemo<Payment[]>(
+  const filtered = useMemo<Appointment[]>(
     () =>
-      ALL_PAYMENTS.filter(p => {
+      ALL_APPOINTMENTS.filter(a => {
         if (
           search &&
-          !p.name.toLowerCase().includes(search.toLowerCase()) &&
-          !p.service.toLowerCase().includes(search.toLowerCase())
+          !a.name.toLowerCase().includes(search.toLowerCase()) &&
+          !a.service.toLowerCase().includes(search.toLowerCase())
         )
           return false;
-        if (activeStatus && p.status !== activeStatus) return false;
-        if (dateFilter?.startDate && dateFilter?.endDate && p.date) {
-          const d = parseDate(p.date);
+        if (activeStatus && a.status !== activeStatus) return false;
+        if (dateFilter?.startDate && dateFilter?.endDate && a.date) {
+          const d = parseDate(a.date);
           const s = new Date(dateFilter.startDate);
           s.setHours(0, 0, 0, 0);
           const e = new Date(dateFilter.endDate);
@@ -575,11 +573,11 @@ const AllPayments: React.FC = () => {
   );
 
   const sections = useMemo<SectionData[]>(() => {
-    const map: Record<string, Payment[]> = {};
-    filtered.forEach(p => {
-      const key = p.date ?? 'Unknown';
+    const map: Record<string, Appointment[]> = {};
+    filtered.forEach(a => {
+      const key = a.date ?? 'Unknown';
       if (!map[key]) map[key] = [];
-      map[key].push(p);
+      map[key].push(a);
     });
     return Object.entries(map)
       .sort(([a], [b]) => b.localeCompare(a))
@@ -596,7 +594,7 @@ const AllPayments: React.FC = () => {
   }, []);
 
   const renderItem = useCallback(
-    ({ item }: { item: Payment }) => <PaymentRowCard item={item} />,
+    ({ item }: { item: Appointment }) => <AppointmentRowCard item={item} />,
     [],
   );
 
@@ -613,11 +611,10 @@ const AllPayments: React.FC = () => {
     <View style={mainStyles.screen}>
       <StatusBar barStyle="dark-content" backgroundColor="#FFFFFF" />
 
-      {/* ── Single Big Card — Header + List  ── */}
+      {/* ── Single Big Card — Header + List ── */}
       <View style={mainStyles.bigCard}>
         {/* ── Header ── */}
         <View style={mainStyles.header}>
-          {/* Date chip */}
           <View style={mainStyles.TitleRow}>
             <TouchableOpacity onPress={() => navigation.goBack()}>
               <ChevronLeft size={24} color="#635BFF" />
@@ -625,7 +622,7 @@ const AllPayments: React.FC = () => {
 
             <View style={mainStyles.Title}>
               <View style={mainStyles.PaymentsTitle}>
-                <Text style={mainStyles.pageTitle}>Payments</Text>
+                <Text style={mainStyles.pageTitle}>Appointments</Text>
               </View>
               <View />
 
@@ -672,7 +669,7 @@ const AllPayments: React.FC = () => {
         <View style={mainStyles.divider} />
 
         {/* ── Section List ── */}
-        <SectionList<Payment, SectionData>
+        <SectionList<Appointment, SectionData>
           sections={sections}
           keyExtractor={item => item.id}
           renderItem={renderItem}
@@ -691,4 +688,4 @@ const AllPayments: React.FC = () => {
   );
 };
 
-export default AllPayments;
+export default AllAppointment;
